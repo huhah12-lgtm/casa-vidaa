@@ -19,8 +19,8 @@
     @keyframes ambientDrift{from{background-position:42% 43%;transform:scale(1.035) translate3d(-.35%,0,0)}to{background-position:58% 57%;transform:scale(1.07) translate3d(.35%,-.2%,0)}}
     @keyframes artDrift{from{transform:scale(1.035) translate3d(-.25%,0,0)}to{transform:scale(1.085) translate3d(.25%,-.35%,0)}}
     .backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,12,.96) 0%,rgba(8,8,12,.72) 35%,rgba(8,8,12,.16) 78%),linear-gradient(0deg,#101014 0%,rgba(16,16,20,.96) 8%,rgba(16,16,20,.62) 30%,transparent 67%,rgba(7,8,11,.35) 100%)}
-    main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:18px 6.3vw 14px;display:flex;flex-direction:column}
-    header{height:48px;flex:none;display:flex;align-items:center;gap:clamp(10px,1.35vw,20px)}
+    main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:18px 2.75vw 14px;display:flex;flex-direction:column}
+    header{height:48px;flex:none;display:flex;align-items:center;gap:clamp(10px,1.35vw,20px);padding-left:clamp(16px,1.8vw,34px)}
     .profile{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;background:linear-gradient(145deg,#f1c8a1,#96553f);border:2px solid #ffffff90;box-shadow:0 2px 14px #0008}
     .brand{font-weight:900;letter-spacing:.14em;font-size:clamp(14px,1.5vw,20px);margin-right:2px}
     nav{display:flex;align-items:center;gap:2px;padding:4px;border-radius:28px;background:rgba(85,59,49,.63);backdrop-filter:blur(12px)}
