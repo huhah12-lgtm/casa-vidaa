@@ -59,7 +59,7 @@
       <div class="eyebrow">Sua sala, sua seleção</div>
       <h1 id="title">Tudo começa<br>por aqui.</h1>
       <p class="summary" id="summary">Interface de teste para a sua Hisense. Use as setas do controle e pressione OK para navegar pelas categorias.</p>
-      <div class="hint"><span class="key">OK</span> <span>Escolha um app para testar o controle</span></div>
+      <div class="hint"><span class="key">OK</span> <span>Escolha um atalho para abrir o serviço</span></div>
     </section>
     <section aria-label="Aplicativos de exemplo">
       <p class="section-title" id="sectionTitle">Seus aplicativos</p>
@@ -88,6 +88,14 @@
       musica: { title:'Dê o play<br>na sua música.', summary:'Atalhos visuais para música, rádio e playlists.', section:'Música e áudio', items:['Spotify','YouTube','Rádio','Playlists','Favoritas'] },
       apps: { title:'Seus apps,<br>em um só lugar.', summary:'Uma tela inicial simples, com navegação por setas e foco visível.', section:'Aplicativos', items:['NETFLIX','YouTube','prime<br>video','Disney+','Mais apps'] }
     };
+    const serviceUrls = {
+      'netflix': 'https://www.netflix.com/',
+      'youtube': 'https://www.youtube.com/tv',
+      'prime video': 'https://app.primevideo.com/',
+      'disney+': 'https://www.disneyplus.com/',
+      'música': 'https://open.spotify.com/',
+      'spotify': 'https://open.spotify.com/'
+    };
     const toast = document.getElementById('toast'); let timer;
     function notify(text) { toast.textContent = text; toast.classList.add('show'); clearTimeout(timer); timer = setTimeout(()=>toast.classList.remove('show'),1800); }
     function selectCategory(key) {
@@ -100,7 +108,12 @@
     }
     function activate(el) {
       if (el?.dataset.category) selectCategory(el.dataset.category);
-      else if (el?.classList.contains('app')) notify('Atalho visual — a integração dos apps vem na próxima etapa.');
+      else if (el?.classList.contains('app')) {
+        const label = el.querySelector('span')?.innerText.replace(/\s+/g, ' ').trim().toLowerCase();
+        const url = serviceUrls[label];
+        if (url) window.location.assign(url);
+        else notify('Este cartão ainda não tem um serviço associado.');
+      }
     }
     document.addEventListener('keydown', e => {
       const current = document.activeElement;

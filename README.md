@@ -10,6 +10,7 @@ O projeto pode ser publicado pelo GitHub Pages a partir da raiz do repositório.
 
 - Navegação visual entre Início, Filmes, Séries, Música e Apps.
 - Destaque de foco para controle direcional.
-- Cartões de exemplo; ainda não iniciam os aplicativos nativos da TV.
+- Atalhos para abrir as versões web de Netflix, YouTube, Prime Video, Disney+ e Spotify.
+- Os atalhos web não iniciam os aplicativos nativos e alguns serviços podem não funcionar no navegador da TV.
 - Sem bibliotecas externas, fontes remotas, analytics ou chamadas de API.
 
