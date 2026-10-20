@@ -180,7 +180,10 @@
           if(route){
             const sendRoute=()=>{
               if(routed)return;
-              try{stremioWindow.location.hash=route;routed=true}catch{}
+              // Cross-origin TV browsers allow navigation through location.href
+              // or replace(), but may reject writing location.hash directly.
+              try{stremioWindow.location.replace(target.href+route);routed=true}
+              catch{try{stremioWindow.location.href=target.href+route;routed=true}catch{}}
             };
             setTimeout(sendRoute,1800);
             setTimeout(sendRoute,3000);
