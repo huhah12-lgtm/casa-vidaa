@@ -205,7 +205,7 @@
     const filmControls=document.getElementById('filmControls');
     const genreShelves=document.getElementById('genreShelves');
     const rows=document.querySelector('.rows');
-    const artworkCacheKey='casa-wikipedia-artwork-v1';
+    const artworkCacheKey='casa-wikipedia-artwork-v2';
     const artworkCache=(()=>{try{return JSON.parse(localStorage.getItem(artworkCacheKey)||'{}')}catch{return{}}})();
     const artworkRequests=new Map();
     const popularCatalogs={movie:[],series:[]};
@@ -248,13 +248,14 @@
     function renderGenreShelves(items,type){genreShelves.replaceChildren();const assigned=new Map(genreDefinitions.map(([key])=>[key,[]]));for(const item of items){const key=(item.genres||[])[0]||'Other';if(assigned.has(key))assigned.get(key).push(item)}const sections=genreDefinitions.map(([key,label])=>({label,matches:assigned.get(key)})).filter(section=>section.matches.length);let row=4;for(const {label,matches} of sections){const section=document.createElement('section');section.className='content-row';section.setAttribute('aria-label',`${type==='movie'?'Filmes':'Séries'} de ${label}`);const heading=document.createElement('div');heading.className='section-head';heading.innerHTML=`<p class="row-title">${label}</p>`;const strip=document.createElement('div');strip.className='posters';section.append(heading,strip);genreShelves.appendChild(section);renderStrip(strip,matches,row++)}genreShelfCounts[type]=row-4;document.querySelectorAll('.app.focusable').forEach(button=>button.dataset.row=String(row))}
     function renderPopularCatalog(type){const items=popularCatalogs[type];if(!items.length){popularTitle.textContent='Carregando catálogo externo…';popularPosters.replaceChildren();genreShelves.innerHTML='<p class="row-title">Preparando as fileiras por gênero…</p>';return}const featured=items.slice(0,12);const genreItems=items.slice(12);popularTitle.textContent=type==='movie'?'Novidades — Filmes':'Séries em destaque';popularSection.setAttribute('aria-label',`Destaques de ${type==='movie'?'filmes':'séries'} · fonte externa`);renderStrip(popularPosters,featured,3);renderGenreShelves(genreItems,type);if(activeCategory===(type==='movie'?'filmes':'series'))document.querySelectorAll('.app.focusable').forEach(button=>button.dataset.row=String(4+genreShelfCounts[type]))}
     function classifyWikidataGenres(labels){const normalized=labels.map(value=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase());const found=[];for(const label of normalized){for(const [key,pattern] of wikidataGenrePatterns){const match=pattern.exec(label);if(match&&!found.some(item=>item.key===key))found.push({key,index:match.index})}}return found.sort((a,b)=>a.index-b.index).map(item=>item.key).slice(0,2)}
+    function sortMovieArtworkFirst(items){return [...items].sort((a,b)=>Number(Boolean(b.image))-Number(Boolean(a.image))||b.year.localeCompare(a.year)||a.name.localeCompare(b.name))}
     function wikidataItem(binding,type,genreOverride=''){const imdb=binding.imdb?.value;if(!/^tt\d+$/.test(imdb||''))return null;const title=binding.workLabel?.value;if(!title||/^Q\d+$/.test(title))return null;const date=binding.date?.value||'';const year=date.slice(0,4);const externalGenres=[binding.genreLabel?.value||''];const mapped=classifyWikidataGenres(externalGenres);const primary=genreOverride||mapped[0]||'Other';const image=binding.image?.value?.replace(/^http:/,'https:')||'';const description=binding.summary?.value||`${type==='movie'?'Filme':'Série'} de ${year||'data não informada'}, catalogado no Wikidata. A disponibilidade varia por serviço.`;return{name:title,year,type,id:imdb,kind:`${type==='movie'?'FILME':'SÉRIE'} · ${genreDefinitions.find(([key])=>key===primary)?.[1]?.toUpperCase()||'OUTROS'}`,provider:'Abrir no Stremio',image,summary:description,trend:`Lançamento ${year||'recente'} · catálogo aberto`,genres:[primary],source:'Wikidata'}}
     async function loadPopularCatalog(type){
       const cacheKey=`casa-external-catalog-${type}-${type==='movie'?'v4':'v6'}`;
       let cached={savedAt:0,items:[]};
       try{cached=JSON.parse(localStorage.getItem(cacheKey)||'null')||cached}catch{}
       if(Date.now()-cached.savedAt<12*60*60*1000&&cached.items.length){
-        popularCatalogs[type]=cached.items;
+        popularCatalogs[type]=type==='movie'?sortMovieArtworkFirst(cached.items):cached.items;
       }else{
         try{
           let items=[];
@@ -271,7 +272,7 @@
               }));
               for(const {key,bindings} of results)for(const binding of bindings){const item=wikidataItem(binding,type,key);if(item&&!byId.has(item.id))byId.set(item.id,item)}
             }
-            items=[...byId.values()].sort((a,b)=>b.year.localeCompare(a.year)||a.name.localeCompare(b.name));
+            items=sortMovieArtworkFirst([...byId.values()]);
           }else{
             const updatesResponse=await fetch('https://api.tvmaze.com/updates/shows?since=month',{cache:'no-store'});
             if(!updatesResponse.ok)throw new Error('Atualizações do TVmaze indisponíveis');
