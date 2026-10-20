@@ -112,8 +112,8 @@
   <div id="toast" role="status" aria-live="polite"></div>
   <script>
     // The installed tile points to this full community Stremio TV build for VIDAA, never Stremio Lite.
-    const STREMIO_BASE='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee';
-    const STREMIO_SEARCH='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee#/search?query=';
+    const STREMIO_BASE='https://huhah12-lgtm.github.io/casa-vidaa/stremio/?install_source=sidee';
+    const STREMIO_SEARCH=STREMIO_BASE+'#/search?query=';
     const JUSTWATCH='https://br.justwatch.com/br/streaming-charts';
     const images={
       animals:'https://images.justwatch.com/backdrop/354632797/s1440/animals-2026.jpg',
@@ -162,40 +162,22 @@
     function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
     function stremioSearch(title,year){return STREMIO_SEARCH+encodeURIComponent(`${title} ${year||''}`.trim())}
     function launchFullStremio(url=STREMIO_BASE){
-      // Use the TV-optimized Stremio origin already linked on the TV. Its
-      // startup router replaces an initial #/detail hash, so open the app first
-      // and send the hash route after its shell has loaded. This keeps the
-      // existing Stremio login and opens the selected title in its TV UI.
+      // Open a same-origin CASA page first so Back returns to the interface.
+      // The hosted TV build preserves a valid initial hash route at startup.
       const target=new URL(url,location.href);
-      const route=target.hash;
-      target.hash='';
       let stremioWindow=null;
       try{stremioWindow=window.open(location.href,'_blank')}catch{}
       if(stremioWindow){
-        let started=false, routed=false;
+        let started=false;
         const startStremio=()=>{
           if(started)return;
           started=true;
-          try{stremioWindow.location.assign(target.href)}catch{return}
-          if(route){
-            const sendRoute=()=>{
-              if(routed)return;
-              // Cross-origin TV browsers allow navigation through location.href
-              // or replace(), but may reject writing location.hash directly.
-              try{stremioWindow.location.replace(target.href+route);routed=true}
-              catch{try{stremioWindow.location.href=target.href+route;routed=true}catch{}}
-            };
-            setTimeout(sendRoute,1800);
-            setTimeout(sendRoute,3000);
-          }
+          try{stremioWindow.location.assign(target.href)}catch{}
         };
         try{stremioWindow.addEventListener('load',()=>setTimeout(startStremio,250),{once:true})}catch{}
         setTimeout(startStremio,1500);
         return;
       }
-      // VIDAA can block a second browsing context. In that case use the same
-      // TV app URL; direct hashes are still passed through as the fallback.
-      target.hash=route;
       window.location.assign(target.href);
     }
     function renderPosters(items){posters.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row='1';b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. Abrir detalhes no Stremio`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('focus',()=>showItem(item));b.addEventListener('mouseenter',()=>showItem(item));b.addEventListener('click',()=>openItem(item));posters.appendChild(b)})}

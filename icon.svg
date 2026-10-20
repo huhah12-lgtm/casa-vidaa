@@ -3,5 +3,5 @@
   <rect width="256" height="256" rx="48" fill="url(#g)"/>
   <text x="128" y="81" fill="#ffffff" fill-opacity=".8" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="5" text-anchor="middle">CASA</text>
   <rect x="24" y="101" width="208" height="108" rx="29" fill="#ffffff" fill-opacity=".08" stroke="#86d8bf" stroke-width="4"/>
-  <text x="128" y="179" fill="#ffffff" font-family="Arial,sans-serif" font-size="76" font-weight="800" text-anchor="middle">v15</text>
+  <text x="128" y="179" fill="#ffffff" font-family="Arial,sans-serif" font-size="76" font-weight="800" text-anchor="middle">v16</text>
 </svg>
