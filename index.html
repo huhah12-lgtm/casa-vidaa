@@ -13,13 +13,13 @@
     body{background:#101014;color:var(--white)}
     button{font:inherit;color:inherit;border:0;cursor:pointer}
     .backdrop{position:fixed;inset:0;overflow:hidden;background:#101014}
-    .backdrop-image{position:absolute;inset:-3%;opacity:0;background:radial-gradient(ellipse at 72% 24%,#473e62 0,transparent 34%),radial-gradient(ellipse at 22% 75%,#283d49 0,transparent 38%),linear-gradient(130deg,#111318,#1c1a20 52%,#111317);background-size:cover;background-position:50% 45%;transform:scale(1.035);transition:opacity .9s ease;animation:ambientDrift 44s ease-in-out infinite alternate}
+    .backdrop-image{position:absolute;inset:-3%;opacity:0;background:radial-gradient(ellipse at 76% 24%,#62503c 0,transparent 36%),radial-gradient(ellipse at 54% 19%,#30473d 0,transparent 39%),radial-gradient(ellipse at 28% 79%,#293c48 0,transparent 40%),linear-gradient(130deg,#111318,#1c1a20 52%,#111317);background-size:cover;background-position:50% 45%;transform:scale(1.035);transition:opacity .9s ease;animation:ambientDrift 44s ease-in-out infinite alternate}
     .backdrop-image.active{opacity:1}
     .backdrop-image.has-image{animation:artDrift 36s ease-in-out infinite alternate}
     @keyframes ambientDrift{from{background-position:42% 43%;transform:scale(1.035) translate3d(-.35%,0,0)}to{background-position:58% 57%;transform:scale(1.07) translate3d(.35%,-.2%,0)}}
     @keyframes artDrift{from{transform:scale(1.035) translate3d(-.25%,0,0)}to{transform:scale(1.085) translate3d(.25%,-.35%,0)}}
-    .backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,12,.96) 0%,rgba(8,8,12,.72) 35%,rgba(8,8,12,.16) 78%),linear-gradient(0deg,#101014 0%,rgba(16,16,20,.96) 8%,rgba(16,16,20,.62) 30%,transparent 67%,rgba(7,8,11,.35) 100%)}
-    main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:18px 2.75vw 14px;display:flex;flex-direction:column}
+    .backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,12,.94) 0%,rgba(8,8,12,.62) 35%,rgba(8,8,12,.10) 78%),linear-gradient(0deg,#101014 0%,rgba(16,16,20,.94) 8%,rgba(16,16,20,.58) 30%,transparent 67%,rgba(7,8,11,.24) 100%)}
+    main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:16px 2.25vw 12px;display:flex;flex-direction:column}
     header{height:48px;flex:none;display:flex;align-items:center;gap:clamp(10px,1.35vw,20px);padding-left:clamp(16px,1.8vw,34px)}
     .profile{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;background:linear-gradient(145deg,#f1c8a1,#96553f);border:2px solid #ffffff90;box-shadow:0 2px 14px #0008}
     .brand{font-weight:900;letter-spacing:.14em;font-size:clamp(14px,1.5vw,20px);margin-right:2px}
@@ -31,29 +31,35 @@
     .spacer{flex:1}
     .clock,.platform{white-space:nowrap;font-size:clamp(12px,1.15vw,16px)}
     .platform{color:#e3d9d0}
-    .hero{flex:1 1 auto;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 16px;max-width:900px}
+    .hero{flex:1 1 auto;min-height:166px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 13px;max-width:760px}
     .eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 7px;color:#f8f1eb;font-weight:800;font-size:clamp(13px,1.45vw,19px);text-shadow:0 2px 12px #000b}
     .provider-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px #ffc87b}
-    h1{font-size:clamp(35px,5.15vw,70px);line-height:1.01;letter-spacing:-.045em;font-weight:500;margin:0 0 9px;text-shadow:0 3px 20px #000c}
+    h1{font-size:clamp(34px,4.55vw,66px);line-height:1.01;letter-spacing:-.045em;font-weight:500;margin:0 0 8px;text-shadow:0 3px 20px #000c}
     .summary{max-width:730px;color:#f1ece8;font-size:clamp(13px,1.35vw,18px);line-height:1.35;margin:0 0 9px;text-shadow:0 2px 12px #000c}
     .trending{font-size:clamp(11px,1.05vw,14px);color:#f5eee7;text-shadow:0 1px 8px #000b}
     .trending strong{color:var(--gold);margin-right:8px}
-    .rows{display:flex;flex-direction:column;gap:14px;flex:none}
-    .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 8px}
+    .hero-actions{display:flex;align-items:center;gap:16px;margin-top:14px}
+    .watch-now{height:38px;min-width:150px;padding:0 24px;border-radius:22px;background:#f5f4f1;color:#1b1a19;font-weight:800;font-size:clamp(12px,1vw,14px);box-shadow:0 5px 20px #0008}
+    .hero-dots{display:flex;align-items:center;gap:6px}
+    .hero-dots i{width:6px;height:6px;border-radius:50%;background:#ffffff70}
+    .hero-dots i:first-child{width:20px;border-radius:6px;background:#fff}
+    .rows{display:flex;flex-direction:column;gap:12px;flex:none}
+    .content-row{min-width:0}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 7px}
     .row-title{font-size:clamp(12px,1.12vw,16px);color:#f1ece8;margin:0}
     .row-meta{font-size:clamp(9px,.82vw,11px);color:#c9c1bb}
-    .posters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(9px,1.35vw,18px)}
-    .poster{height:clamp(72px,9.4vw,112px);min-width:0;overflow:hidden;position:relative;border-radius:11px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:9px 11px;background:#383331 center 35%/cover no-repeat;border:1px solid #ffffff32;box-shadow:0 9px 24px #0008;transition:transform .16s,outline-color .16s}
+    .posters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(9px,1.2vw,17px)}
+    .poster{height:clamp(64px,7.8vh,104px);min-width:0;overflow:hidden;position:relative;border-radius:11px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:8px 10px;background:#383331 center 35%/cover no-repeat;border:1px solid #ffffff32;box-shadow:0 9px 24px #0008;transition:transform .16s,outline-color .16s}
     .poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.18) 76%)}
     .poster-tag,.poster-name,.poster-provider{position:relative;z-index:1}
     .poster-tag{font-size:clamp(8px,.75vw,10px);text-transform:uppercase;letter-spacing:.1em;color:#ffe0b4;margin-bottom:2px}
     .poster-name{font-size:clamp(11px,1.08vw,15px);font-weight:800;line-height:1.07;text-shadow:0 2px 7px #000c}
     .poster-provider{font-size:clamp(8px,.72vw,10px);color:#e2ddd7;margin-top:4px;text-shadow:0 2px 6px #000}
     .music-card{background:radial-gradient(ellipse at 78% 20%,#e8a6ff 0,transparent 27%),linear-gradient(135deg,#37264f,#9d426b 52%,#202239)}
-    .apps{display:flex;align-items:flex-start;gap:clamp(11px,1.8vw,25px);overflow-x:auto;overflow-y:hidden;padding:9px 8px 11px;scrollbar-width:none}
+    .apps{display:flex;align-items:flex-start;gap:clamp(11px,1.65vw,24px);overflow-x:auto;overflow-y:hidden;padding:5px 8px 7px;scrollbar-width:none}
     .apps::-webkit-scrollbar{display:none}
-    .app{width:clamp(62px,7vw,94px);flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;background:transparent;text-align:center}
-    .app-icon{width:clamp(58px,6.6vw,86px);height:clamp(58px,6.6vw,86px);border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#fff,#eeecea);color:#17191e;box-shadow:0 8px 22px #000a, inset 0 1px 0 #ffffffb8;border:1px solid #ffffff9c;transition:transform .18s,box-shadow .18s}
+    .app{width:clamp(55px,6.4vw,84px);flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;background:transparent;text-align:center}
+    .app-icon{width:clamp(50px,5.8vw,76px);height:clamp(50px,5.8vw,76px);border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#fff,#eeecea);color:#17191e;box-shadow:0 8px 22px #000a, inset 0 1px 0 #ffffffb8;border:1px solid #ffffff9c;transition:transform .18s,box-shadow .18s}
     .app-icon svg{width:76%;height:76%;display:block;overflow:visible}
     .app[data-app="netflix"] .app-icon{color:#e50914}
     .app[data-app="netflix"] .app-icon svg{width:78%;height:42%}
@@ -79,7 +85,7 @@
     @media(prefers-reduced-motion:reduce){.backdrop-image{animation:none;transition:opacity .2s ease}}
     #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);opacity:0;background:#f4f3f1;color:#181716;padding:11px 16px;border-radius:10px;font-size:14px;font-weight:700;transition:.2s;pointer-events:none;box-shadow:0 10px 30px #0009}
     #toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-height:620px){main{padding-top:11px;padding-bottom:8px}header{height:41px}.hero{min-height:145px;padding-bottom:11px}.rows{gap:10px}.poster{height:70px}.app-label{display:none}footer{margin-top:5px}}
+    @media(max-height:620px){main{padding-top:9px;padding-bottom:6px}header{height:39px}.hero{min-height:130px;padding-bottom:8px}.hero-actions{margin-top:9px}.watch-now{height:32px}.rows{gap:8px}.poster{height:58px}.section-head{margin-bottom:5px}.app-label{display:none}footer{margin-top:4px}}
   </style>
 </head>
 <body>
@@ -103,22 +109,27 @@
       <h1 id="title">Instinto Animal</h1>
       <p class="summary" id="summary">Um suspense sobre uma família que corre contra o tempo para salvar o filho e proteger segredos.</p>
       <div class="trending"><strong>EM ALTA NO BRASIL</strong><span id="trendingText">Uma das escolhas mais vistas esta semana</span></div>
+      <div class="hero-actions"><button class="watch-now focusable" data-action="watch" data-row="1" data-col="0">▶ &nbsp;Assistir agora</button><span class="hero-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
     </section>
     <div class="rows">
-      <section aria-label="Recomendações">
+      <section class="content-row" aria-label="Tocando agora">
+        <div class="section-head"><p class="row-title" id="nowTitle">Tocando agora</p><span class="row-meta" id="nowMeta">Seleção CASA</span></div>
+        <div class="posters" id="nowPosters"></div>
+      </section>
+      <section class="content-row" aria-label="Recomendados para você">
         <div class="section-head"><p class="row-title" id="sectionTitle">Recomendados para você</p><span class="row-meta" id="rowMeta">Filmes e séries · Stremio</span></div>
         <div class="posters" id="posters"></div>
       </section>
       <section aria-label="Aplicativos">
           <div class="section-head"><p class="row-title">Seus aplicativos</p><span class="row-meta" id="appsHint">Setas para navegar · OK para abrir</span></div>
         <div class="apps">
-          <button class="app focusable" data-app="netflix" data-row="2" data-col="0" aria-label="Abrir Netflix"><span class="app-icon"><svg viewBox="0 0 120 48" role="img" aria-label="Netflix"><text x="60" y="37" text-anchor="middle" fill="currentColor" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="900" letter-spacing="-2.5">NETFLIX</text></svg></span><span class="app-label">Netflix</span></button>
-          <button class="app focusable" data-app="youtube" data-row="2" data-col="1" aria-label="Abrir YouTube"><span class="app-icon"><svg viewBox="0 0 64 46" role="img" aria-label="YouTube"><rect x="1" y="1" width="62" height="44" rx="13" fill="#f00"/><path d="m27 12 19 11-19 11z" fill="#fff"/></svg></span><span class="app-label">YouTube</span></button>
-          <button class="app focusable" data-app="prime" data-row="2" data-col="2" aria-label="Abrir Prime Video"><span class="app-icon"><svg viewBox="0 0 100 72" role="img" aria-label="Prime Video"><text x="50" y="31" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="29" font-weight="700" letter-spacing="-1.3">prime</text><text x="50" y="52" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="-.4">video</text><path d="M20 58c20 9 42 8 59-2" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="m72 52 8 4-8 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="app-label">Prime Video</span></button>
-          <button class="app focusable" data-app="disney" data-row="2" data-col="3" aria-label="Abrir Disney Plus"><span class="app-icon"><svg viewBox="0 0 110 78" role="img" aria-label="Disney Plus"><path d="M18 30C34 2 78 0 94 30" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><text x="55" y="54" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="27" font-weight="700" letter-spacing="-1.6">Disney+</text></svg></span><span class="app-label">Disney+</span></button>
-          <button class="app focusable" data-app="spotify" data-row="2" data-col="4" aria-label="Abrir Spotify"><span class="app-icon"><svg viewBox="0 0 64 64" role="img" aria-label="Spotify"><path d="M13 24c13-4 28-3 40 4M16 34c11-3 23-2 34 4M19 43c9-2 18-1 27 4" fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></span><span class="app-label">Spotify</span></button>
-          <button class="app focusable" data-app="stremio" data-row="2" data-col="5" aria-label="Abrir Stremio completo"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="Stremio"><defs><linearGradient id="stremioTile" x1=".2" y1="1" x2=".8" y2="0"><stop stop-color="#315ce3"/><stop offset="1" stop-color="#9460f3"/></linearGradient></defs><rect x="20" y="20" width="60" height="60" rx="12" transform="rotate(45 50 50)" fill="url(#stremioTile)"/><path d="M45 36v28l22-14z" fill="#fff"/></svg></span><span class="app-label">Stremio</span></button>
-          <button class="app focusable" data-app="ytmusic" data-row="2" data-col="6" aria-label="Abrir YouTube para acessar a seção Música"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="YouTube Music"><circle cx="50" cy="50" r="43" fill="#f03"/><circle cx="50" cy="50" r="24" fill="none" stroke="#fff" stroke-width="6"/><path d="m46 39 18 11-18 11z" fill="#fff"/></svg></span><span class="app-label">YouTube Music</span></button>
+          <button class="app focusable" data-app="netflix" data-row="4" data-col="0" aria-label="Abrir Netflix"><span class="app-icon"><svg viewBox="0 0 120 48" role="img" aria-label="Netflix"><text x="60" y="37" text-anchor="middle" fill="currentColor" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="900" letter-spacing="-2.5">NETFLIX</text></svg></span><span class="app-label">Netflix</span></button>
+          <button class="app focusable" data-app="youtube" data-row="4" data-col="1" aria-label="Abrir YouTube"><span class="app-icon"><svg viewBox="0 0 64 46" role="img" aria-label="YouTube"><rect x="1" y="1" width="62" height="44" rx="13" fill="#f00"/><path d="m27 12 19 11-19 11z" fill="#fff"/></svg></span><span class="app-label">YouTube</span></button>
+          <button class="app focusable" data-app="prime" data-row="4" data-col="2" aria-label="Abrir Prime Video"><span class="app-icon"><svg viewBox="0 0 100 72" role="img" aria-label="Prime Video"><text x="50" y="31" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="29" font-weight="700" letter-spacing="-1.3">prime</text><text x="50" y="52" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="-.4">video</text><path d="M20 58c20 9 42 8 59-2" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="m72 52 8 4-8 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="app-label">Prime Video</span></button>
+          <button class="app focusable" data-app="disney" data-row="4" data-col="3" aria-label="Abrir Disney Plus"><span class="app-icon"><svg viewBox="0 0 110 78" role="img" aria-label="Disney Plus"><path d="M18 30C34 2 78 0 94 30" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><text x="55" y="54" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="27" font-weight="700" letter-spacing="-1.6">Disney+</text></svg></span><span class="app-label">Disney+</span></button>
+          <button class="app focusable" data-app="spotify" data-row="4" data-col="4" aria-label="Abrir Spotify"><span class="app-icon"><svg viewBox="0 0 64 64" role="img" aria-label="Spotify"><path d="M13 24c13-4 28-3 40 4M16 34c11-3 23-2 34 4M19 43c9-2 18-1 27 4" fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></span><span class="app-label">Spotify</span></button>
+          <button class="app focusable" data-app="stremio" data-row="4" data-col="5" aria-label="Abrir Stremio completo"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="Stremio"><defs><linearGradient id="stremioTile" x1=".2" y1="1" x2=".8" y2="0"><stop stop-color="#315ce3"/><stop offset="1" stop-color="#9460f3"/></linearGradient></defs><rect x="20" y="20" width="60" height="60" rx="12" transform="rotate(45 50 50)" fill="url(#stremioTile)"/><path d="M45 36v28l22-14z" fill="#fff"/></svg></span><span class="app-label">Stremio</span></button>
+          <button class="app focusable" data-app="ytmusic" data-row="4" data-col="6" aria-label="Abrir YouTube para acessar a seção Música"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="YouTube Music"><circle cx="50" cy="50" r="43" fill="#f03"/><circle cx="50" cy="50" r="24" fill="none" stroke="#fff" stroke-width="6"/><path d="m46 39 18 11-18 11z" fill="#fff"/></svg></span><span class="app-label">YouTube Music</span></button>
         </div>
       </section>
     </div>
@@ -157,6 +168,7 @@
       {name:'Brasil 70: A Saga do Tri',year:'2026',type:'series',id:'tt37041010',kind:'SÉRIE · DOCUMENTÁRIO',provider:'Netflix',image:images.brasil70,summary:'A história da seleção brasileira na jornada que levou ao tricampeonato mundial.',trend:'Estreia recente',source:'https://br.justwatch.com/br/serie/brazil-70-a-saga-do-tri'}
     ];
     const home=[films[0],films[1],series[0],films[3],series[1]];
+    const trending=[films[2],films[4],series[2],series[3],series[4]];
     const playlists=[
       {name:'Hits brasileiros',kind:'MÚSICA · BRASIL',provider:'YouTube Music',image:'',summary:'No YouTube da TV, abra o menu à esquerda e escolha Música para explorar seus mixes e playlists.',trend:'YouTube · menu esquerdo · Música'},
       {name:'Lançamentos',kind:'MÚSICA · NOVIDADES',provider:'YouTube Music',image:'',summary:'No YouTube da TV, abra o menu à esquerda e escolha Música para explorar seus mixes e playlists.',trend:'YouTube · menu esquerdo · Música'},
@@ -165,14 +177,15 @@
       {name:'Lo-fi para relaxar',kind:'MÚSICA · LO-FI',provider:'YouTube Music',image:'',summary:'No YouTube da TV, abra o menu à esquerda e escolha Música para explorar seus mixes e playlists.',trend:'YouTube · menu esquerdo · Música'}
     ];
     const categories={
-      inicio:{list:home,section:'Recomendados para você',hero:films[0],trending:'Os títulos mais comentados e recentes no Brasil'},
-      filmes:{list:films,section:'Filmes em alta',hero:films[0],trending:'Disponíveis nos serviços indicados'},
-      series:{list:series,section:'Séries para maratonar',hero:series[0],trending:'Temporadas recentes e séries em alta'},
-      musica:{list:playlists,section:'YouTube Music na TV',hero:playlists[0],trending:'No YouTube, abra o menu à esquerda e selecione Música'},
-      apps:{list:home,section:'Escolhas para começar',hero:films[0],trending:'Serviços instalados e atalhos da CASA'}
+      inicio:{now:home,list:trending,section:'Recomendados para você',hero:films[0],trending:'Os títulos mais comentados e recentes no Brasil'},
+      filmes:{now:films.slice(0,3),list:[films[2],films[3],films[4],films[0],films[1]],section:'Filmes em alta',hero:films[0],trending:'Disponíveis nos serviços indicados'},
+      series:{now:series.slice(0,3),list:[series[3],series[4],series[0],series[1],series[2]],section:'Séries para maratonar',hero:series[0],trending:'Temporadas recentes e séries em alta'},
+      musica:{now:playlists.slice(0,3),list:[playlists[3],playlists[4],playlists[0],playlists[1],playlists[2]],section:'YouTube Music na TV',hero:playlists[0],trending:'No YouTube, abra o menu à esquerda e selecione Música'},
+      apps:{now:home,list:trending,section:'Escolhas para começar',hero:films[0],trending:'Serviços instalados e atalhos da CASA'}
     };
     const navButtons=[...document.querySelectorAll('.nav')];
     const posters=document.getElementById('posters');
+    const nowPosters=document.getElementById('nowPosters');let featuredItem=films[0];
     const backdropLayers=[document.getElementById('backdropA'),document.getElementById('backdropB')];let activeBackdrop=0;
     const toast=document.getElementById('toast');let toastTimer;
     function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
@@ -196,17 +209,18 @@
       }
       window.location.assign(target.href);
     }
-    function renderPosters(items){posters.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row='1';b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. ${item.provider==='YouTube Music'?'Abrir YouTube e acessar Música':'Abrir detalhes no Stremio'}`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('focus',()=>showItem(item));b.addEventListener('click',()=>openItem(item));posters.appendChild(b)})}
+    function renderStrip(container,items,row){container.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row=String(row);b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. ${item.provider==='YouTube Music'?'Abrir YouTube e acessar Música':'Abrir detalhes no Stremio'}`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('focus',()=>showItem(item));b.addEventListener('click',()=>openItem(item));container.appendChild(b)})}
+    function renderPosters(items){renderStrip(posters,items,3)}
     function setBackdrop(item){const nextIndex=1-activeBackdrop;const next=backdropLayers[nextIndex];next.style.backgroundImage=item?.image?`linear-gradient(90deg,rgba(8,8,12,.18),rgba(8,8,12,.05)),url("${item.image.replace('/s640/','/s1440/')}")`:'';next.classList.toggle('has-image',Boolean(item?.image));requestAnimationFrame(()=>{next.classList.add('active');backdropLayers[activeBackdrop].classList.remove('active');activeBackdrop=nextIndex})}
-    function showItem(item,updateBackdrop=true){document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=item.trend||'Seleção CASA';if(updateBackdrop)setBackdrop(item)}
-    function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero,false);setBackdrop(null);document.getElementById('sectionTitle').textContent=data.section;document.getElementById('rowMeta').textContent=key==='musica'?'YouTube na TV · controle remoto':'Filmes e séries · Stremio';document.getElementById('appsHint').textContent=key==='musica'?'YouTube: esquerda → Música · use o controle':'Setas para navegar · OK para abrir';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderPosters(data.list);}
+    function showItem(item,updateBackdrop=true){featuredItem=item;document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=item.trend||'Seleção CASA';if(updateBackdrop)setBackdrop(item)}
+    function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero,false);setBackdrop(null);document.getElementById('nowTitle').textContent=key==='musica'?'Em destaque':'Tocando agora';document.getElementById('nowMeta').textContent=key==='musica'?'YouTube Music':'Seleção CASA';document.getElementById('sectionTitle').textContent=data.section;document.getElementById('rowMeta').textContent=key==='musica'?'YouTube na TV · controle remoto':'Filmes e séries · Stremio';document.getElementById('appsHint').textContent=key==='musica'?'YouTube: esquerda → Música · use o controle':'Setas para navegar · OK para abrir';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderStrip(nowPosters,data.now,2);renderPosters(data.list);}
     // This VIDAA build registers /detail/:type/:metaId/:videoId? (not
     // /metadetails), so keep the deep link on the route its TV frontend uses.
     function stremioDetail(item){return `${STREMIO_BASE}#/detail/${item.type}/${encodeURIComponent(item.id)}${item.type==='movie'?`/${encodeURIComponent(item.id)}`:''}`}
     const YOUTUBE_VIDAA='pkgapp://tv.vidaa.app.youtube/apps/start_youtube.sh';
     function openItem(item){if(item.provider==='YouTube Music'){window.location.assign(YOUTUBE_VIDAA);return;}if(item.id&&item.type){launchFullStremio(stremioDetail(item));return;}launchFullStremio(stremioSearch(item.name,item.year))}
     function openApp(key){const urls={netflix:'https://www.netflix.com/',youtube:YOUTUBE_VIDAA,prime:'https://app.primevideo.com/',disney:'https://www.disneyplus.com/',spotify:'https://open.spotify.com/',ytmusic:YOUTUBE_VIDAA};if(key==='stremio'){launchFullStremio();return;}if(urls[key])window.location.assign(urls[key])}
-    function activate(el){if(el?.dataset.category)selectCategory(el.dataset.category);else if(el?.dataset.app)openApp(el.dataset.app);else if(el?.dataset.action==='charts')window.location.assign(JUSTWATCH);else if(el?.dataset.item){const item=[...films,...series,...playlists].find(x=>x.name===el.dataset.item);if(item)openItem(item)}}
+    function activate(el){if(el?.dataset.category)selectCategory(el.dataset.category);else if(el?.dataset.app)openApp(el.dataset.app);else if(el?.dataset.action==='charts')window.location.assign(JUSTWATCH);else if(el?.dataset.action==='watch')openItem(featuredItem);else if(el?.dataset.item){const item=[...films,...series,...playlists].find(x=>x.name===el.dataset.item);if(item)openItem(item)}}
     function moveFocus(key){const current=document.activeElement;const row=Number(current?.dataset.row??0);const col=Number(current?.dataset.col??0);const all=[...document.querySelectorAll('.focusable')];const rows=[...new Set(all.map(el=>Number(el.dataset.row)))].sort((a,b)=>a-b);if(key==='ArrowLeft'||key==='ArrowRight'){const peers=all.filter(el=>Number(el.dataset.row)===row);let i=peers.indexOf(current);i=(i+(key==='ArrowRight'?1:-1)+peers.length)%peers.length;peers[i]?.focus();return;}if(key==='ArrowUp'||key==='ArrowDown'){const available=key==='ArrowUp'?rows.filter(r=>r<row).sort((a,b)=>b-a):rows.filter(r=>r>row).sort((a,b)=>a-b);if(!available.length)return;const peers=all.filter(el=>Number(el.dataset.row)===available[0]);peers.reduce((best,el)=>Math.abs(Number(el.dataset.col)-col)<Math.abs(Number(best.dataset.col)-col)?el:best,peers[0])?.focus()}}
     function leaveCasa(){if(window.history.length>1){window.history.back();return;}try{window.close()}catch{}setTimeout(()=>notify('Para sair da CASA, use Voltar ou Home no controle.'),120)}
     document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();moveFocus(e.key)}else if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(document.activeElement)}else if(['Escape','Backspace','BrowserBack','GoBack','Back'].includes(e.key)||e.keyCode===461||e.which===461){e.preventDefault();leaveCasa()}});
