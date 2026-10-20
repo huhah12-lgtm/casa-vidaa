@@ -18,48 +18,52 @@
     .backdrop-image.has-image{animation:artDrift 36s ease-in-out infinite alternate}
     @keyframes ambientDrift{from{background-position:42% 43%;transform:scale(1.035) translate3d(-.35%,0,0)}to{background-position:58% 57%;transform:scale(1.07) translate3d(.35%,-.2%,0)}}
     @keyframes artDrift{from{transform:scale(1.035) translate3d(-.25%,0,0)}to{transform:scale(1.085) translate3d(.25%,-.35%,0)}}
-    .backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,12,.94) 0%,rgba(8,8,12,.62) 35%,rgba(8,8,12,.10) 78%),linear-gradient(0deg,#101014 0%,rgba(16,16,20,.94) 8%,rgba(16,16,20,.58) 30%,transparent 67%,rgba(7,8,11,.24) 100%)}
-    main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:16px 2.25vw 12px;display:flex;flex-direction:column}
-    header{height:48px;flex:none;display:flex;align-items:center;gap:clamp(10px,1.35vw,20px);padding-left:clamp(16px,1.8vw,34px)}
-    .profile{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;background:linear-gradient(145deg,#f1c8a1,#96553f);border:2px solid #ffffff90;box-shadow:0 2px 14px #0008}
+    .backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,12,.80) 0%,rgba(8,8,12,.54) 31%,rgba(8,8,12,.08) 75%),linear-gradient(0deg,#101014 0%,rgba(16,16,20,.91) 9%,rgba(16,16,20,.48) 29%,transparent 62%,rgba(7,8,11,.12) 100%)}
+    main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:12px 4.6vw 10px;display:flex;flex-direction:column}
+    header{height:47px;flex:none;display:flex;align-items:center;gap:clamp(8px,1.15vw,16px);padding-left:7px}
+    .profile{width:29px;height:29px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;background:linear-gradient(145deg,#f1c8a1,#96553f);border:2px solid #ffffff90;box-shadow:0 2px 14px #0008}
     .brand{font-weight:900;letter-spacing:.14em;font-size:clamp(14px,1.5vw,20px);margin-right:2px}
-    nav{display:flex;align-items:center;gap:2px;padding:4px;border-radius:28px;background:rgba(85,59,49,.63);backdrop-filter:blur(12px)}
-    .nav{height:36px;display:flex;align-items:center;gap:8px;padding:0 clamp(11px,1.5vw,19px);white-space:nowrap;border-radius:24px;background:transparent;color:#f5eee8;font-size:clamp(12px,1.16vw,16px)}
-    .nav-icon{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    nav{display:flex;align-items:center;gap:clamp(6px,.9vw,12px);padding:0 5px;background:transparent}
+    .nav{position:relative;width:37px;height:37px;display:flex;flex:none;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;white-space:nowrap;border-radius:50%;background:rgba(255,255,255,.10);color:#f5eee8;font-size:clamp(8px,.7vw,10px)}
+    .nav-icon{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .nav span{display:none;position:absolute;top:39px;left:50%;transform:translateX(-50%);color:#fff;font-size:9px;text-shadow:0 1px 8px #000}
     .nav.active{background:#f7f5f3;color:#201d1b;font-weight:800}
-    .search{width:36px;height:36px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.13);font-size:21px}
+    .nav.active span{display:block}
+    .search{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.13);font-size:19px}
     .spacer{flex:1}
-    .clock,.platform{white-space:nowrap;font-size:clamp(12px,1.15vw,16px)}
+    .clock,.platform{white-space:nowrap;font-size:clamp(10px,.95vw,13px)}
     .platform{color:#e3d9d0}
-    .hero{flex:1 1 auto;min-height:166px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 13px;max-width:760px}
+    .hero{flex:1 1 auto;min-height:185px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 16px;max-width:760px}
     .eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 7px;color:#f8f1eb;font-weight:800;font-size:clamp(13px,1.45vw,19px);text-shadow:0 2px 12px #000b}
     .provider-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px #ffc87b}
-    h1{font-size:clamp(34px,4.55vw,66px);line-height:1.01;letter-spacing:-.045em;font-weight:500;margin:0 0 8px;text-shadow:0 3px 20px #000c}
+    h1{font-size:clamp(36px,4.9vw,72px);line-height:1.01;letter-spacing:-.045em;font-weight:500;margin:0 0 8px;text-shadow:0 3px 20px #000c}
     .summary{max-width:730px;color:#f1ece8;font-size:clamp(13px,1.35vw,18px);line-height:1.35;margin:0 0 9px;text-shadow:0 2px 12px #000c}
     .trending{font-size:clamp(11px,1.05vw,14px);color:#f5eee7;text-shadow:0 1px 8px #000b}
     .trending strong{color:var(--gold);margin-right:8px}
     .hero-actions{display:flex;align-items:center;gap:16px;margin-top:14px}
-    .watch-now{height:38px;min-width:150px;padding:0 24px;border-radius:22px;background:#f5f4f1;color:#1b1a19;font-weight:800;font-size:clamp(12px,1vw,14px);box-shadow:0 5px 20px #0008}
+    .watch-now{height:36px;min-width:146px;padding:0 23px;border-radius:22px;background:rgba(20,20,21,.78);color:#fff;font-weight:700;font-size:clamp(12px,1vw,14px);box-shadow:0 5px 20px #0008;border:1px solid #ffffff48}
     .hero-dots{display:flex;align-items:center;gap:6px}
     .hero-dots i{width:6px;height:6px;border-radius:50%;background:#ffffff70}
     .hero-dots i:first-child{width:20px;border-radius:6px;background:#fff}
-    .rows{display:flex;flex-direction:column;gap:12px;flex:none}
+    .rows{display:grid;grid-template-columns:minmax(155px,1fr) minmax(0,4fr);gap:10px clamp(10px,1.25vw,18px);flex:none}
     .content-row{min-width:0}
-    .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 7px}
-    .row-title{font-size:clamp(12px,1.12vw,16px);color:#f1ece8;margin:0}
-    .row-meta{font-size:clamp(9px,.82vw,11px);color:#c9c1bb}
-    .posters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(9px,1.2vw,17px)}
-    .poster{height:clamp(64px,7.8vh,104px);min-width:0;overflow:hidden;position:relative;border-radius:11px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:8px 10px;background:#383331 center 35%/cover no-repeat;border:1px solid #ffffff32;box-shadow:0 9px 24px #0008;transition:transform .16s,outline-color .16s}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:5px;margin:0 0 7px}
+    .row-title{font-size:clamp(11px,1vw,14px);color:#f1ece8;margin:0;white-space:nowrap}
+    .row-meta{font-size:clamp(8px,.7vw,10px);color:#c9c1bb;white-space:nowrap}
+    .posters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(7px,.9vw,13px)}
+    #nowPosters{grid-template-columns:minmax(0,1fr)}
+    #appsSection{grid-column:1/-1}
+    .poster{height:clamp(70px,11vh,116px);min-width:0;overflow:hidden;position:relative;border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:8px 9px;background:#383331 center 35%/cover no-repeat;border:1px solid #ffffff42;box-shadow:0 9px 24px #0008;transition:transform .16s,outline-color .16s}
     .poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.18) 76%)}
     .poster-tag,.poster-name,.poster-provider{position:relative;z-index:1}
     .poster-tag{font-size:clamp(8px,.75vw,10px);text-transform:uppercase;letter-spacing:.1em;color:#ffe0b4;margin-bottom:2px}
     .poster-name{font-size:clamp(11px,1.08vw,15px);font-weight:800;line-height:1.07;text-shadow:0 2px 7px #000c}
     .poster-provider{font-size:clamp(8px,.72vw,10px);color:#e2ddd7;margin-top:4px;text-shadow:0 2px 6px #000}
     .music-card{background:radial-gradient(ellipse at 78% 20%,#e8a6ff 0,transparent 27%),linear-gradient(135deg,#37264f,#9d426b 52%,#202239)}
-    .apps{display:flex;align-items:flex-start;gap:clamp(11px,1.65vw,24px);overflow-x:auto;overflow-y:hidden;padding:5px 8px 7px;scrollbar-width:none}
+    .apps{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(8px,1.2vw,18px);overflow-x:auto;overflow-y:hidden;padding:5px 8px 7px;scrollbar-width:none}
     .apps::-webkit-scrollbar{display:none}
-    .app{width:clamp(55px,6.4vw,84px);flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;background:transparent;text-align:center}
-    .app-icon{width:clamp(50px,5.8vw,76px);height:clamp(50px,5.8vw,76px);border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#fff,#eeecea);color:#17191e;box-shadow:0 8px 22px #000a, inset 0 1px 0 #ffffffb8;border:1px solid #ffffff9c;transition:transform .18s,box-shadow .18s}
+    .app{width:clamp(55px,7.3vw,90px);flex:1 0 0;display:flex;flex-direction:column;align-items:center;gap:5px;background:transparent;text-align:center}
+    .app-icon{width:clamp(48px,5.5vw,72px);height:clamp(48px,5.5vw,72px);border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#fff,#eeecea);color:#17191e;box-shadow:0 8px 22px #000a, inset 0 1px 0 #ffffffb8;border:1px solid #ffffff9c;transition:transform .18s,box-shadow .18s}
     .app-icon svg{width:76%;height:76%;display:block;overflow:visible}
     .app[data-app="netflix"] .app-icon{color:#e50914}
     .app[data-app="netflix"] .app-icon svg{width:78%;height:42%}
@@ -85,7 +89,7 @@
     @media(prefers-reduced-motion:reduce){.backdrop-image{animation:none;transition:opacity .2s ease}}
     #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);opacity:0;background:#f4f3f1;color:#181716;padding:11px 16px;border-radius:10px;font-size:14px;font-weight:700;transition:.2s;pointer-events:none;box-shadow:0 10px 30px #0009}
     #toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-height:620px){main{padding-top:9px;padding-bottom:6px}header{height:39px}.hero{min-height:130px;padding-bottom:8px}.hero-actions{margin-top:9px}.watch-now{height:32px}.rows{gap:8px}.poster{height:58px}.section-head{margin-bottom:5px}.app-label{display:none}footer{margin-top:4px}}
+    @media(max-height:620px){main{padding-top:8px;padding-bottom:5px}header{height:39px}.hero{min-height:130px;padding-bottom:9px}.hero-actions{margin-top:9px}.watch-now{height:31px}.rows{gap:8px 10px}.poster{height:58px}.section-head{margin-bottom:5px}.app-label{display:none}footer{margin-top:4px}}
   </style>
 </head>
 <body>
@@ -95,11 +99,11 @@
       <div class="profile" aria-hidden="true">C</div>
       <button class="search focusable" data-action="charts" data-row="0" data-col="0" aria-label="Buscar tendências">⌕</button>
       <nav aria-label="Seções">
-        <button class="nav active focusable" data-category="inicio" data-row="0" data-col="1"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7v9a1.5 1.5 0 0 1-1.5 1.5h-14A1.5 1.5 0 0 1 3.5 19z"/><path d="M9 20.5v-7h6v7"/></svg><span>Início</span></button>
-        <button class="nav focusable" data-category="filmes" data-row="0" data-col="2"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 4l3 5m4-5 3 5M7 20l3-5m4 5 3-5"/></svg><span>Filmes</span></button>
-        <button class="nav focusable" data-category="series" data-row="0" data-col="3"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M8 8h.01M12 8h.01M16 8h.01M8 12h.01M12 12h.01M16 12h.01"/></svg><span>Séries</span></button>
-        <button class="nav focusable" data-category="musica" data-row="0" data-col="4"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><path d="M9 8l11-2"/><ellipse cx="6" cy="18.5" rx="3" ry="2.5"/><ellipse cx="17" cy="16.5" rx="3" ry="2.5"/></svg><span>Música</span></button>
-        <button class="nav focusable" data-category="apps" data-row="0" data-col="5"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg><span>Apps</span></button>
+        <button class="nav active focusable" data-category="inicio" data-row="0" data-col="1" aria-label="Início"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10 8.5-7 8.5 7v9a1.5 1.5 0 0 1-1.5 1.5h-14A1.5 1.5 0 0 1 3.5 19z"/><path d="M9 20.5v-7h6v7"/></svg><span>Início</span></button>
+        <button class="nav focusable" data-category="filmes" data-row="0" data-col="2" aria-label="Filmes"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 4l3 5m4-5 3 5M7 20l3-5m4 5 3-5"/></svg><span>Filmes</span></button>
+        <button class="nav focusable" data-category="series" data-row="0" data-col="3" aria-label="Séries"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M8 8h.01M12 8h.01M16 8h.01M8 12h.01M12 12h.01M16 12h.01"/></svg><span>Séries</span></button>
+        <button class="nav focusable" data-category="musica" data-row="0" data-col="4" aria-label="Música"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><path d="M9 8l11-2"/><ellipse cx="6" cy="18.5" rx="3" ry="2.5"/><ellipse cx="17" cy="16.5" rx="3" ry="2.5"/></svg><span>Música</span></button>
+        <button class="nav focusable" data-category="apps" data-row="0" data-col="5" aria-label="Aplicativos"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg><span>Apps</span></button>
       </nav>
       <div class="spacer"></div>
       <div class="clock" id="clock">--:--</div><div class="platform">VIDAA TV</div>
@@ -120,7 +124,7 @@
         <div class="section-head"><p class="row-title" id="sectionTitle">Recomendados para você</p><span class="row-meta" id="rowMeta">Filmes e séries · Stremio</span></div>
         <div class="posters" id="posters"></div>
       </section>
-      <section aria-label="Aplicativos">
+      <section id="appsSection" aria-label="Aplicativos">
           <div class="section-head"><p class="row-title">Seus aplicativos</p><span class="row-meta" id="appsHint">Setas para navegar · OK para abrir</span></div>
         <div class="apps">
           <button class="app focusable" data-app="netflix" data-row="4" data-col="0" aria-label="Abrir Netflix"><span class="app-icon"><svg viewBox="0 0 120 48" role="img" aria-label="Netflix"><text x="60" y="37" text-anchor="middle" fill="currentColor" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="900" letter-spacing="-2.5">NETFLIX</text></svg></span><span class="app-label">Netflix</span></button>
@@ -177,11 +181,11 @@
       {name:'Lo-fi para relaxar',kind:'MÚSICA · LO-FI',provider:'YouTube Music',image:'',summary:'No YouTube da TV, abra o menu à esquerda e escolha Música para explorar seus mixes e playlists.',trend:'YouTube · menu esquerdo · Música'}
     ];
     const categories={
-      inicio:{now:home,list:trending,section:'Recomendados para você',hero:films[0],trending:'Os títulos mais comentados e recentes no Brasil'},
-      filmes:{now:films.slice(0,3),list:[films[2],films[3],films[4],films[0],films[1]],section:'Filmes em alta',hero:films[0],trending:'Disponíveis nos serviços indicados'},
-      series:{now:series.slice(0,3),list:[series[3],series[4],series[0],series[1],series[2]],section:'Séries para maratonar',hero:series[0],trending:'Temporadas recentes e séries em alta'},
-      musica:{now:playlists.slice(0,3),list:[playlists[3],playlists[4],playlists[0],playlists[1],playlists[2]],section:'YouTube Music na TV',hero:playlists[0],trending:'No YouTube, abra o menu à esquerda e selecione Música'},
-      apps:{now:home,list:trending,section:'Escolhas para começar',hero:films[0],trending:'Serviços instalados e atalhos da CASA'}
+      inicio:{now:[home[0]],list:home.slice(1),section:'Recomendados para você',hero:films[0],trending:'Os títulos mais comentados e recentes no Brasil'},
+      filmes:{now:[films[0]],list:films.slice(1),section:'Filmes em alta',hero:films[0],trending:'Disponíveis nos serviços indicados'},
+      series:{now:[series[0]],list:series.slice(1),section:'Séries para maratonar',hero:series[0],trending:'Temporadas recentes e séries em alta'},
+      musica:{now:[playlists[0]],list:playlists.slice(1),section:'YouTube Music na TV',hero:playlists[0],trending:'No YouTube, abra o menu à esquerda e selecione Música'},
+      apps:{now:[home[0]],list:home.slice(1),section:'Escolhas para começar',hero:films[0],trending:'Serviços instalados e atalhos da CASA'}
     };
     const navButtons=[...document.querySelectorAll('.nav')];
     const posters=document.getElementById('posters');
@@ -210,10 +214,10 @@
       window.location.assign(target.href);
     }
     function renderStrip(container,items,row){container.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row=String(row);b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. ${item.provider==='YouTube Music'?'Abrir YouTube e acessar Música':'Abrir detalhes no Stremio'}`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('focus',()=>showItem(item));b.addEventListener('click',()=>openItem(item));container.appendChild(b)})}
-    function renderPosters(items){renderStrip(posters,items,3)}
+    function renderPosters(items){renderStrip(posters,items,2)}
     function setBackdrop(item){const nextIndex=1-activeBackdrop;const next=backdropLayers[nextIndex];next.style.backgroundImage=item?.image?`linear-gradient(90deg,rgba(8,8,12,.18),rgba(8,8,12,.05)),url("${item.image.replace('/s640/','/s1440/')}")`:'';next.classList.toggle('has-image',Boolean(item?.image));requestAnimationFrame(()=>{next.classList.add('active');backdropLayers[activeBackdrop].classList.remove('active');activeBackdrop=nextIndex})}
     function showItem(item,updateBackdrop=true){featuredItem=item;document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=item.trend||'Seleção CASA';if(updateBackdrop)setBackdrop(item)}
-    function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero,false);setBackdrop(null);document.getElementById('nowTitle').textContent=key==='musica'?'Em destaque':'Tocando agora';document.getElementById('nowMeta').textContent=key==='musica'?'YouTube Music':'Seleção CASA';document.getElementById('sectionTitle').textContent=data.section;document.getElementById('rowMeta').textContent=key==='musica'?'YouTube na TV · controle remoto':'Filmes e séries · Stremio';document.getElementById('appsHint').textContent=key==='musica'?'YouTube: esquerda → Música · use o controle':'Setas para navegar · OK para abrir';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderStrip(nowPosters,data.now,2);renderPosters(data.list);}
+    function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero,false);setBackdrop(data.hero);document.getElementById('nowTitle').textContent=key==='musica'?'Em destaque':'Tocando agora';document.getElementById('nowMeta').textContent=key==='musica'?'YouTube Music':'Seleção CASA';document.getElementById('sectionTitle').textContent=data.section;document.getElementById('rowMeta').textContent=key==='musica'?'YouTube na TV · controle remoto':'Filmes e séries · Stremio';document.getElementById('appsHint').textContent=key==='musica'?'YouTube: esquerda → Música · use o controle':'Setas para navegar · OK para abrir';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderStrip(nowPosters,data.now,2);renderPosters(data.list);}
     // This VIDAA build registers /detail/:type/:metaId/:videoId? (not
     // /metadetails), so keep the deep link on the route its TV frontend uses.
     function stremioDetail(item){return `${STREMIO_BASE}#/detail/${item.type}/${encodeURIComponent(item.id)}${item.type==='movie'?`/${encodeURIComponent(item.id)}`:''}`}
@@ -224,7 +228,6 @@
     function moveFocus(key){const current=document.activeElement;const row=Number(current?.dataset.row??0);const col=Number(current?.dataset.col??0);const all=[...document.querySelectorAll('.focusable')];const rows=[...new Set(all.map(el=>Number(el.dataset.row)))].sort((a,b)=>a-b);if(key==='ArrowLeft'||key==='ArrowRight'){const peers=all.filter(el=>Number(el.dataset.row)===row);let i=peers.indexOf(current);i=(i+(key==='ArrowRight'?1:-1)+peers.length)%peers.length;peers[i]?.focus();return;}if(key==='ArrowUp'||key==='ArrowDown'){const available=key==='ArrowUp'?rows.filter(r=>r<row).sort((a,b)=>b-a):rows.filter(r=>r>row).sort((a,b)=>a-b);if(!available.length)return;const peers=all.filter(el=>Number(el.dataset.row)===available[0]);peers.reduce((best,el)=>Math.abs(Number(el.dataset.col)-col)<Math.abs(Number(best.dataset.col)-col)?el:best,peers[0])?.focus()}}
     function leaveCasa(){if(window.history.length>1){window.history.back();return;}try{window.close()}catch{}setTimeout(()=>notify('Para sair da CASA, use Voltar ou Home no controle.'),120)}
     document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();moveFocus(e.key)}else if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(document.activeElement)}else if(['Escape','Backspace','BrowserBack','GoBack','Back'].includes(e.key)||e.keyCode===461||e.which===461){e.preventDefault();leaveCasa()}});
-    document.addEventListener('focusin',e=>{if(!e.target.closest('.poster'))setBackdrop(null)});
     posters.addEventListener('mouseleave',()=>{if(!posters.contains(document.activeElement))setBackdrop(null)});
     document.querySelectorAll('.focusable[data-category],.focusable[data-app],.focusable[data-action]').forEach(el=>el.addEventListener('click',()=>activate(el)));
     const updateClock=()=>document.getElementById('clock').textContent=new Intl.DateTimeFormat('pt-BR',{hour:'2-digit',minute:'2-digit'}).format(new Date());updateClock();setInterval(updateClock,15000);
