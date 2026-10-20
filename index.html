@@ -113,10 +113,7 @@
   <script>
     // The installed tile points to this full community Stremio TV build for VIDAA, never Stremio Lite.
     const STREMIO_BASE='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee';
-    const STREMIO_SEARCH='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee#/search?search=';
-    // The community VIDAA build resets direct routes during startup. Use the official
-    // Stremio Web route for recommendation cards so the selected title stays open.
-    const STREMIO_WEB='https://web.stremio.com/';
+    const STREMIO_SEARCH='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee#/search?query=';
     const JUSTWATCH='https://br.justwatch.com/br/streaming-charts';
     const images={
       animals:'https://images.justwatch.com/backdrop/354632797/s1440/animals-2026.jpg',
@@ -165,20 +162,35 @@
     function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
     function stremioSearch(title,year){return STREMIO_SEARCH+encodeURIComponent(`${title} ${year||''}`.trim())}
     function launchFullStremio(url=STREMIO_BASE){
-      // Keep CASA open behind Stremio so the TV/browser can return to it when
-      // it supports a second browsing context. Fall back to same-window
-      // navigation on VIDAA builds that block window.open.
+      // Use the TV-optimized Stremio origin already linked on the TV. Its
+      // startup router replaces an initial #/detail hash, so open the app first
+      // and send the hash route after its shell has loaded. This keeps the
+      // existing Stremio login and opens the selected title in its TV UI.
+      const target=new URL(url,location.href);
+      const route=target.hash;
+      target.hash='';
       let stremioWindow=null;
-      try{stremioWindow=window.open(url,'_blank')}catch{}
-      if(!stremioWindow)window.location.assign(url);
+      try{stremioWindow=window.open(target.href,'_blank')}catch{}
+      if(stremioWindow){
+        if(route){
+          const sendRoute=()=>{try{stremioWindow.location.hash=route}catch{}};
+          setTimeout(sendRoute,1800);
+          setTimeout(sendRoute,2800);
+        }
+        return;
+      }
+      // VIDAA can block a second browsing context. In that case use the same
+      // TV app URL; direct hashes are still passed through as the fallback.
+      target.hash=route;
+      window.location.assign(target.href);
     }
     function renderPosters(items){posters.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row='1';b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. Abrir detalhes no Stremio`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('focus',()=>showItem(item));b.addEventListener('mouseenter',()=>showItem(item));b.addEventListener('click',()=>openItem(item));posters.appendChild(b)})}
     function showItem(item){document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=item.trend||'Seleção CASA';const backdrop=document.getElementById('backdrop');backdrop.style.backgroundImage=item.image?`linear-gradient(90deg,rgba(8,8,12,.18),rgba(8,8,12,.05)),url("${item.image.replace('/s640/','/s1440/')}")`:'radial-gradient(ellipse at 70% 18%,#544278 0,transparent 36%),linear-gradient(120deg,#261d31,#111016 68%)'}
     function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero);document.getElementById('sectionTitle').textContent=data.section;navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderPosters(data.list);}
     // This VIDAA build registers /detail/:type/:metaId/:videoId? (not
     // /metadetails), so keep the deep link on the route its TV frontend uses.
-    function stremioDetail(item){return `${STREMIO_WEB}#/detail/${item.type}/${encodeURIComponent(item.id)}${item.type==='movie'?`/${encodeURIComponent(item.id)}`:''}`}
-    function openItem(item){if(item.provider==='YouTube Music'){window.location.assign('https://music.youtube.com/search?q='+encodeURIComponent(item.name));return;}if(item.id&&item.type){launchFullStremio(stremioDetail(item));return;}launchFullStremio(`${STREMIO_WEB}#/search?search=${encodeURIComponent(`${item.name} ${item.year||''}`.trim())}`)}
+    function stremioDetail(item){return `${STREMIO_BASE}#/detail/${item.type}/${encodeURIComponent(item.id)}${item.type==='movie'?`/${encodeURIComponent(item.id)}`:''}`}
+    function openItem(item){if(item.provider==='YouTube Music'){window.location.assign('https://music.youtube.com/search?q='+encodeURIComponent(item.name));return;}if(item.id&&item.type){launchFullStremio(stremioDetail(item));return;}launchFullStremio(stremioSearch(item.name,item.year))}
     function openApp(key){const urls={netflix:'https://www.netflix.com/',youtube:'pkgapp://tv.vidaa.app.youtube/apps/start_youtube.sh',prime:'https://app.primevideo.com/',disney:'https://www.disneyplus.com/',spotify:'https://open.spotify.com/',ytmusic:'https://music.youtube.com/'};if(key==='stremio'){launchFullStremio();return;}if(urls[key])window.location.assign(urls[key])}
     function activate(el){if(el?.dataset.category)selectCategory(el.dataset.category);else if(el?.dataset.app)openApp(el.dataset.app);else if(el?.dataset.action==='charts')window.location.assign(JUSTWATCH);else if(el?.dataset.item){const item=[...films,...series,...playlists].find(x=>x.name===el.dataset.item);if(item)openItem(item)}}
     function moveFocus(key){const current=document.activeElement;const row=Number(current?.dataset.row??0);const col=Number(current?.dataset.col??0);const all=[...document.querySelectorAll('.focusable')];const rows=[...new Set(all.map(el=>Number(el.dataset.row)))].sort((a,b)=>a-b);if(key==='ArrowLeft'||key==='ArrowRight'){const peers=all.filter(el=>Number(el.dataset.row)===row);let i=peers.indexOf(current);i=(i+(key==='ArrowRight'?1:-1)+peers.length)%peers.length;peers[i]?.focus();return;}if(key==='ArrowUp'||key==='ArrowDown'){const available=key==='ArrowUp'?rows.filter(r=>r<row).sort((a,b)=>b-a):rows.filter(r=>r>row).sort((a,b)=>a-b);if(!available.length)return;const peers=all.filter(el=>Number(el.dataset.row)===available[0]);peers.reduce((best,el)=>Math.abs(Number(el.dataset.col)-col)<Math.abs(Number(best.dataset.col)-col)?el:best,peers[0])?.focus()}}
