@@ -111,9 +111,8 @@
   </main>
   <div id="toast" role="status" aria-live="polite"></div>
   <script>
-    // This is the full community Stremio TV build installed on this VIDAA TV (appId: stremiodebug), never Stremio Lite.
+    // The installed tile points to this full community Stremio TV build for VIDAA, never Stremio Lite.
     const STREMIO_BASE='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee';
-    const STREMIO_LAUNCH='vidaa://apps/launch/stremiodebug';
     const STREMIO_SEARCH='https://noobygains.github.io/stremio-vidaa-tv/?install_source=sidee#/search?search=';
     const JUSTWATCH='https://br.justwatch.com/br/streaming-charts';
     const images={
@@ -162,7 +161,7 @@
     const toast=document.getElementById('toast');let toastTimer;
     function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
     function stremioSearch(title,year){return STREMIO_SEARCH+encodeURIComponent(`${title} ${year||''}`.trim())}
-    function launchFullStremio(fallbackUrl=STREMIO_BASE){const fallback=setTimeout(()=>{if(document.visibilityState!=='hidden')window.location.assign(fallbackUrl)},1800);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')clearTimeout(fallback)},{once:true});window.location.assign(STREMIO_LAUNCH)}
+    function launchFullStremio(url=STREMIO_BASE){window.location.href=url}
     function renderPosters(items){posters.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row='1';b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. Abrir no Stremio`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('click',()=>openItem(item));posters.appendChild(b)})}
     function selectCategory(key){const data=categories[key];if(!data)return;const item=data.hero;document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=data.trending;document.getElementById('sectionTitle').textContent=data.section;const backdrop=document.getElementById('backdrop');backdrop.style.backgroundImage=item.image?`linear-gradient(90deg,rgba(8,8,12,.18),rgba(8,8,12,.05)),url("${item.image.replace('/s640/','/s1440/')}")`:'radial-gradient(ellipse at 70% 18%,#544278 0,transparent 36%),linear-gradient(120deg,#261d31,#111016 68%)';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderPosters(data.list);}
     function openItem(item){if(item.provider==='YouTube Music'){window.location.assign('https://music.youtube.com/search?q='+encodeURIComponent(item.name));return;}launchFullStremio(stremioSearch(item.name,item.year))}
