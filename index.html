@@ -47,17 +47,24 @@
     .music-card{background:radial-gradient(ellipse at 78% 20%,#e8a6ff 0,transparent 27%),linear-gradient(135deg,#37264f,#9d426b 52%,#202239)}
     .apps{display:flex;align-items:flex-start;gap:clamp(11px,1.8vw,25px);overflow-x:auto;overflow-y:visible;padding:2px 3px 4px;scrollbar-width:none}
     .apps::-webkit-scrollbar{display:none}
-    .app{width:clamp(57px,6.8vw,88px);flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;background:transparent;text-align:center}
-    .app-icon{width:clamp(52px,6.2vw,80px);height:clamp(52px,6.2vw,80px);border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#f7f6f4;color:#17191e;box-shadow:0 7px 19px #0009;border:1px solid #ffffff80}
-    .app-icon svg{width:71%;height:71%;display:block}
-    .app[data-app="netflix"] .app-icon{color:#e50914}.app[data-app="netflix"] .app-icon svg{width:40%;height:69%}
-    .app[data-app="youtube"] .app-icon svg{width:62%;height:46%}
-    .app[data-app="prime"] .app-icon{color:#0876c9}
-    .app[data-app="disney"] .app-icon{color:#163b69}
-    .app[data-app="spotify"] .app-icon{background:#111819;color:#1ed760}.app[data-app="spotify"] .app-icon svg{width:59%;height:59%}
-    .app[data-app="stremio"] .app-icon{background:#18191d;color:#ff6b3d}
-    .app[data-app="ytmusic"] .app-icon{background:#f7f6f4;color:#f03}
-    .app-label{font-size:clamp(9px,.86vw,12px);color:#f3eee9;white-space:nowrap;text-shadow:0 1px 6px #000}
+    .app{width:clamp(62px,7vw,94px);flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;background:transparent;text-align:center}
+    .app-icon{width:clamp(58px,6.6vw,86px);height:clamp(58px,6.6vw,86px);border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#fff,#eeecea);color:#17191e;box-shadow:0 8px 22px #000a, inset 0 1px 0 #ffffffb8;border:1px solid #ffffff9c;transition:transform .18s,box-shadow .18s}
+    .app-icon svg{width:76%;height:76%;display:block;overflow:visible}
+    .app[data-app="netflix"] .app-icon{color:#e50914}
+    .app[data-app="netflix"] .app-icon svg{width:78%;height:42%}
+    .app[data-app="youtube"] .app-icon svg{width:69%;height:52%}
+    .app[data-app="prime"] .app-icon{background:linear-gradient(145deg,#16b8ee,#0875d1);color:#fff;border-color:#86dfff}
+    .app[data-app="prime"] .app-icon svg{width:79%;height:63%}
+    .app[data-app="disney"] .app-icon{background:radial-gradient(circle at 50% 100%,#19bfd0,#071c43 76%);color:#fff;border-color:#83dce8}
+    .app[data-app="disney"] .app-icon svg{width:82%;height:65%}
+    .app[data-app="spotify"] .app-icon{background:#1ed760;color:#111819;border-color:#a4ffc0}
+    .app[data-app="spotify"] .app-icon svg{width:67%;height:67%}
+    .app[data-app="stremio"] .app-icon{background:linear-gradient(145deg,#292632,#111116);color:#fff;border-color:#9c86ff}
+    .app[data-app="stremio"] .app-icon svg{width:72%;height:72%}
+    .app[data-app="ytmusic"] .app-icon{background:linear-gradient(145deg,#fff,#f5f2f2);color:#f03}
+    .app[data-app="ytmusic"] .app-icon svg{width:70%;height:70%}
+    .app-label{font-size:clamp(10px,.9vw,13px);font-weight:600;color:#f7f3ef;white-space:nowrap;text-shadow:0 1px 7px #000}
+    .app:focus .app-icon{transform:scale(1.07);box-shadow:0 10px 28px #000c,0 0 0 2px #171311,0 0 0 5px #fff,0 0 22px #ffffff70}
     .focusable:focus{outline:3px solid #fff;outline-offset:3px;transform:scale(1.06);box-shadow:0 10px 26px #000b,0 0 20px #ffffff55}
     .poster:focus{transform:scale(1.045)}
     footer{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#c8c0b9;font-size:clamp(8px,.72vw,10px);margin-top:8px;flex:none}
@@ -97,12 +104,12 @@
       <section aria-label="Aplicativos">
         <div class="section-head"><p class="row-title">Seus aplicativos</p><span class="row-meta">Setas para navegar · OK para abrir</span></div>
         <div class="apps">
-          <button class="app focusable" data-app="netflix" data-row="2" data-col="0" aria-label="Abrir Netflix"><span class="app-icon"><svg viewBox="0 0 64 100" role="img" aria-label="Netflix"><path fill="currentColor" d="M9 8h14l32 84H41z"/><path fill="currentColor" d="M9 8h14v84H9zM41 8h14v84H41z" opacity=".92"/></svg></span><span class="app-label">Netflix</span></button>
+          <button class="app focusable" data-app="netflix" data-row="2" data-col="0" aria-label="Abrir Netflix"><span class="app-icon"><svg viewBox="0 0 120 48" role="img" aria-label="Netflix"><text x="60" y="37" text-anchor="middle" fill="currentColor" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="900" letter-spacing="-2.5">NETFLIX</text></svg></span><span class="app-label">Netflix</span></button>
           <button class="app focusable" data-app="youtube" data-row="2" data-col="1" aria-label="Abrir YouTube"><span class="app-icon"><svg viewBox="0 0 64 46" role="img" aria-label="YouTube"><rect x="1" y="1" width="62" height="44" rx="13" fill="#f00"/><path d="m27 12 19 11-19 11z" fill="#fff"/></svg></span><span class="app-label">YouTube</span></button>
-          <button class="app focusable" data-app="prime" data-row="2" data-col="2" aria-label="Abrir Prime Video"><span class="app-icon"><svg viewBox="0 0 100 72" role="img" aria-label="Prime Video"><text x="5" y="31" fill="currentColor" font-family="Arial,sans-serif" font-size="27" font-weight="700" letter-spacing="-1">prime</text><text x="14" y="52" fill="currentColor" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="-.7">video</text><path d="M15 58c20 10 47 10 66-1" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="m74 52 8 5-9 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="app-label">Prime Video</span></button>
-          <button class="app focusable" data-app="disney" data-row="2" data-col="3" aria-label="Abrir Disney Plus"><span class="app-icon"><svg viewBox="0 0 100 72" role="img" aria-label="Disney Plus"><path d="M17 28c14-21 52-25 70 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><text x="7" y="50" fill="currentColor" font-family="Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="-1.4">Disney+</text></svg></span><span class="app-label">Disney+</span></button>
-          <button class="app focusable" data-app="spotify" data-row="2" data-col="4" aria-label="Abrir Spotify"><span class="app-icon"><svg viewBox="0 0 64 64" role="img" aria-label="Spotify"><circle cx="32" cy="32" r="30" fill="none"/><path d="M13 24c13-4 28-3 40 4M16 33c11-3 23-2 34 4M19 42c9-2 18-1 27 4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span><span class="app-label">Spotify</span></button>
-          <button class="app focusable" data-app="stremio" data-row="2" data-col="5" aria-label="Abrir Stremio completo"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="Stremio"><circle cx="50" cy="50" r="43" fill="none" stroke="currentColor" stroke-width="8"/><path d="M42 28v44l35-22z" fill="currentColor"/></svg></span><span class="app-label">Stremio</span></button>
+          <button class="app focusable" data-app="prime" data-row="2" data-col="2" aria-label="Abrir Prime Video"><span class="app-icon"><svg viewBox="0 0 100 72" role="img" aria-label="Prime Video"><text x="50" y="31" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="29" font-weight="700" letter-spacing="-1.3">prime</text><text x="50" y="52" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="-.4">video</text><path d="M20 58c20 9 42 8 59-2" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="m72 52 8 4-8 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="app-label">Prime Video</span></button>
+          <button class="app focusable" data-app="disney" data-row="2" data-col="3" aria-label="Abrir Disney Plus"><span class="app-icon"><svg viewBox="0 0 110 78" role="img" aria-label="Disney Plus"><path d="M18 30C34 2 78 0 94 30" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><text x="55" y="54" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="27" font-weight="700" letter-spacing="-1.6">Disney+</text></svg></span><span class="app-label">Disney+</span></button>
+          <button class="app focusable" data-app="spotify" data-row="2" data-col="4" aria-label="Abrir Spotify"><span class="app-icon"><svg viewBox="0 0 64 64" role="img" aria-label="Spotify"><path d="M13 24c13-4 28-3 40 4M16 34c11-3 23-2 34 4M19 43c9-2 18-1 27 4" fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></span><span class="app-label">Spotify</span></button>
+          <button class="app focusable" data-app="stremio" data-row="2" data-col="5" aria-label="Abrir Stremio completo"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="Stremio"><defs><linearGradient id="stremioTile" x1=".2" y1="1" x2=".8" y2="0"><stop stop-color="#315ce3"/><stop offset="1" stop-color="#9460f3"/></linearGradient></defs><rect x="20" y="20" width="60" height="60" rx="12" transform="rotate(45 50 50)" fill="url(#stremioTile)"/><path d="M45 36v28l22-14z" fill="#fff"/></svg></span><span class="app-label">Stremio</span></button>
           <button class="app focusable" data-app="ytmusic" data-row="2" data-col="6" aria-label="Abrir YouTube Music"><span class="app-icon"><svg viewBox="0 0 100 100" role="img" aria-label="YouTube Music"><circle cx="50" cy="50" r="43" fill="#f03"/><circle cx="50" cy="50" r="24" fill="none" stroke="#fff" stroke-width="6"/><path d="m46 39 18 11-18 11z" fill="#fff"/></svg></span><span class="app-label">YouTube Music</span></button>
         </div>
       </section>
