@@ -170,13 +170,24 @@
       const route=target.hash;
       target.hash='';
       let stremioWindow=null;
-      try{stremioWindow=window.open(target.href,'_blank')}catch{}
+      try{stremioWindow=window.open(location.href,'_blank')}catch{}
       if(stremioWindow){
-        if(route){
-          const sendRoute=()=>{try{stremioWindow.location.hash=route}catch{}};
-          setTimeout(sendRoute,1800);
-          setTimeout(sendRoute,2800);
-        }
+        let started=false, routed=false;
+        const startStremio=()=>{
+          if(started)return;
+          started=true;
+          try{stremioWindow.location.assign(target.href)}catch{return}
+          if(route){
+            const sendRoute=()=>{
+              if(routed)return;
+              try{stremioWindow.location.hash=route;routed=true}catch{}
+            };
+            setTimeout(sendRoute,1800);
+            setTimeout(sendRoute,3000);
+          }
+        };
+        try{stremioWindow.addEventListener('load',()=>setTimeout(startStremio,250),{once:true})}catch{}
+        setTimeout(startStremio,1500);
         return;
       }
       // VIDAA can block a second browsing context. In that case use the same
