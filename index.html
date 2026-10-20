@@ -3,75 +3,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <meta name="theme-color" content="#080c12">
-  <title>Casa — teste VIDAA</title>
+  <meta name="theme-color" content="#11100f">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Casa — sua TV</title>
   <style>
-    :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
+    :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; --white:#fff; --muted:#e2ded9; }
     * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; overflow: hidden; color: #f6f7fa; background: #080c12; }
-    .backdrop { position: fixed; inset: 0; background: radial-gradient(ellipse at 77% 18%, #435670 0, #1a2938 23%, transparent 52%), radial-gradient(ellipse at 15% 75%, #233c46 0, transparent 40%), linear-gradient(120deg,#101923,#090d13 60%); }
-    .shade { position: fixed; inset: 0; background: linear-gradient(90deg,rgba(5,9,14,.94) 0%,rgba(5,9,14,.62) 42%,rgba(5,9,14,.05) 100%),linear-gradient(0deg,#080c12 2%,transparent 48%,rgba(8,12,18,.38)); }
-    main { position: relative; width: min(100%,1920px); height: 100vh; min-height: 640px; margin: auto; padding: 34px 6.4vw 44px; display: flex; flex-direction: column; }
-    header { display: flex; align-items: center; gap: 44px; height: 58px; }
-    .brand { font-size: 24px; font-weight: 800; letter-spacing: .16em; margin-right: 12px; color: #fff; }
-    nav { display: flex; gap: 9px; }
-    button { font: inherit; color: inherit; border: 0; cursor: pointer; }
-    .nav { background: transparent; border-radius: 28px; padding: 13px 19px; font-size: 17px; color: #d5dbe3; }
-    .nav.active { background: #f3f5f8; color: #121821; font-weight: 700; }
-    .spacer { flex: 1; }
-    .clock { font-size: 18px; color: #e8edf2; }
-    .hero { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 15px; }
-    .eyebrow { color: #c7d6e4; font-size: 15px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 17px; }
-    h1 { font-size: clamp(42px,6.2vw,84px); line-height: .98; letter-spacing: -.045em; max-width: 780px; margin: 0 0 18px; }
-    .summary { max-width: 650px; color: #d0d8e1; font-size: clamp(18px,2vw,24px); line-height: 1.45; margin: 0 0 26px; }
-    .hint { display: inline-flex; align-items: center; gap: 12px; color: #f6f8fb; font-size: 16px; }
-    .key { display: inline-grid; place-items: center; width: 37px; height: 37px; border: 1px solid #cad5dfaa; border-radius: 50%; background: #ffffff15; font-weight: 800; }
-    .section-title { font-size: 17px; color: #e0e6ed; margin: 0 0 15px 2px; }
-    .apps { display: flex; gap: clamp(14px,2.1vw,32px); align-items: center; }
-    .app { width: clamp(92px,10vw,142px); height: clamp(92px,10vw,142px); border-radius: 24px; display: grid; place-items: center; text-align: center; background: linear-gradient(145deg,#242c37,#111820); border: 1px solid #ffffff20; box-shadow: 0 12px 30px #0005; transition: transform .18s,border-color .18s,box-shadow .18s; }
-    .app span { font-size: clamp(15px,1.6vw,22px); font-weight: 800; letter-spacing: -.03em; }
-    .app[data-color="red"] span { color: #ff3445; }
-    .app[data-color="blue"] span { color: #71c6ff; }
-    .app[data-color="gold"] span { color: #f8d48b; }
-    .app[data-color="green"] span { color: #7bd3a4; }
-    .focusable:focus { outline: 4px solid #fff; outline-offset: 5px; transform: scale(1.08); box-shadow: 0 18px 40px #0009,0 0 26px #ffffff33; }
-    footer { display: flex; justify-content: space-between; align-items: center; color: #aab4c0; font-size: 13px; margin-top: 25px; }
-    #toast { position: fixed; left: 50%; bottom: 40px; transform: translate(-50%,20px); opacity: 0; background: #f4f6f8; color: #111820; padding: 15px 22px; border-radius: 12px; font-size: 17px; font-weight: 700; transition: .2s; pointer-events: none; box-shadow: 0 10px 35px #0009; }
-    #toast.show { opacity: 1; transform: translate(-50%,0); }
-    @media (max-height:700px) { main { padding-top: 20px; padding-bottom: 22px; } .hero { padding-top: 20px; } }
+    html,body { width:100%; height:100%; margin:0; overflow:hidden; }
+    body { color:var(--white); background:#11100f; }
+    button { color:inherit; font:inherit; border:0; cursor:pointer; }
+    .backdrop { position:fixed; inset:0; background:
+      radial-gradient(ellipse at 71% 6%,rgba(255,157,43,.88),transparent 32%),
+      radial-gradient(ellipse at 47% 20%,rgba(151,40,19,.8),transparent 42%),
+      radial-gradient(ellipse at 89% 45%,rgba(137,25,17,.68),transparent 34%),
+      radial-gradient(ellipse at 35% 77%,rgba(46,35,47,.68),transparent 46%),
+      linear-gradient(120deg,#251a18 0%,#151314 48%,#0c1118 100%); }
+    .backdrop::before,.backdrop::after { content:""; position:absolute; inset:0; pointer-events:none; }
+    .backdrop::before { opacity:.24; background:
+      radial-gradient(ellipse at 72% 40%,#ffd89d 0 1%,transparent 1.4%),
+      radial-gradient(ellipse at 63% 27%,#d77c36 0 2%,transparent 2.5%),
+      radial-gradient(ellipse at 85% 30%,#e9a04d 0 1.4%,transparent 1.9%),
+      linear-gradient(164deg,transparent 0 35%,#100e12 35.2% 54%,transparent 54.2%); }
+    .backdrop::after { background:linear-gradient(90deg,rgba(12,10,11,.93) 0%,rgba(12,10,11,.66) 34%,rgba(12,10,11,.12) 78%),linear-gradient(0deg,#11100f 1%,rgba(17,16,15,.95) 11%,transparent 47%,rgba(10,10,12,.2) 100%); }
+    main { position:relative; z-index:1; width:min(100%,1920px); height:100vh; min-height:540px; margin:auto; padding:22px 6.4vw 20px; display:flex; flex-direction:column; }
+    header { display:flex; align-items:center; gap:clamp(18px,2.1vw,36px); height:54px; flex:none; }
+    .profile { width:36px; height:36px; display:grid; place-items:center; border-radius:50%; color:#211611; font-size:16px; font-weight:800; background:linear-gradient(145deg,#f5d3ad,#bd7754); border:2px solid #ffffff90; box-shadow:0 2px 14px #0007; }
+    .brand { font-size:20px; font-weight:900; letter-spacing:.18em; margin-right:2px; }
+    nav { display:flex; align-items:center; gap:3px; padding:4px; border-radius:30px; background:rgba(91,56,40,.58); backdrop-filter:blur(10px); }
+    .nav { background:transparent; color:#f2e8df; border-radius:24px; padding:10px 17px; font-size:clamp(13px,1.25vw,17px); }
+    .nav.active { background:#f5f3f1; color:#201d1b; font-weight:800; }
+    .header-icon { width:37px; height:37px; display:grid; place-items:center; background:rgba(255,255,255,.13); border-radius:50%; color:#fff; font-size:19px; }
+    .spacer { flex:1; }
+    .clock { font-size:clamp(14px,1.3vw,18px); white-space:nowrap; }
+    .platform { color:#d9d1c7; font-size:clamp(12px,1.1vw,15px); white-space:nowrap; }
+    .hero { flex:1 1 auto; min-height:210px; display:flex; flex-direction:column; justify-content:flex-end; padding:0 0 18px; max-width:860px; }
+    .service-mark { font-size:clamp(17px,2vw,27px); font-weight:900; letter-spacing:-.06em; margin-bottom:8px; text-shadow:0 2px 12px #0009; }
+    h1 { font-size:clamp(37px,5.2vw,72px); line-height:1.02; letter-spacing:-.045em; font-weight:500; margin:0 0 11px; text-shadow:0 2px 18px #0009; }
+    .summary { max-width:770px; color:#f0e9e1; font-size:clamp(15px,1.45vw,20px); line-height:1.4; margin:0 0 13px; text-shadow:0 2px 12px #000b; }
+    .trending { font-size:clamp(13px,1.2vw,16px); color:#f1ebe5; }
+    .trending strong { color:#ffd197; margin-right:10px; }
+    .rows { display:flex; flex-direction:column; gap:18px; flex:none; }
+    .row-title { font-size:clamp(13px,1.15vw,16px); color:#e8e1da; margin:0 0 9px; }
+    .posters { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(10px,1.5vw,22px); }
+    .poster { height:clamp(78px,9.8vw,142px); min-width:0; overflow:hidden; position:relative; border-radius:12px; display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start; text-align:left; padding:12px 14px; box-shadow:0 10px 26px #0008; border:1px solid #ffffff25; transition:transform .16s,outline-color .16s; }
+    .poster::before { content:""; position:absolute; inset:0; opacity:.9; transition:transform .3s; }
+    .poster::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.84),transparent 70%); }
+    .poster:nth-child(1)::before { background:radial-gradient(ellipse at 75% 20%,#ffc46b 0,transparent 23%),linear-gradient(135deg,#481c1e,#db5a27 45%,#16161b); }
+    .poster:nth-child(2)::before { background:radial-gradient(ellipse at 35% 30%,#c4b2ff 0,transparent 28%),linear-gradient(135deg,#22214b,#5650a0 48%,#181423); }
+    .poster:nth-child(3)::before { background:radial-gradient(ellipse at 80% 25%,#f1d293 0,transparent 27%),linear-gradient(135deg,#274e57,#5b9285 48%,#1a2727); }
+    .poster:nth-child(4)::before { background:radial-gradient(ellipse at 70% 22%,#d2e8e8 0,transparent 23%),linear-gradient(135deg,#173756,#4b84a5 48%,#15202a); }
+    .poster:nth-child(5)::before { background:radial-gradient(ellipse at 38% 24%,#ffcf90 0,transparent 25%),linear-gradient(135deg,#633430,#bd6952 45%,#26202a); }
+    .poster-tag,.poster-name { position:relative; z-index:1; }
+    .poster-tag { color:#ffe0b4; text-transform:uppercase; font-size:clamp(9px,.8vw,12px); letter-spacing:.14em; margin-bottom:3px; }
+    .poster-name { font-size:clamp(12px,1.25vw,17px); font-weight:800; line-height:1.1; text-shadow:0 2px 8px #000b; }
+    .apps { display:flex; align-items:flex-start; gap:clamp(16px,2vw,30px); overflow:visible; }
+    .app { width:clamp(62px,7.4vw,104px); flex:none; display:flex; flex-direction:column; align-items:center; gap:7px; background:transparent; text-align:center; }
+    .app-icon { width:clamp(58px,7.1vw,98px); height:clamp(58px,7.1vw,98px); border-radius:50%; display:grid; place-items:center; background:#f5f5f4; color:#17191e; box-shadow:0 8px 22px #0009; border:1px solid #ffffff75; font-weight:900; font-size:clamp(11px,1.15vw,16px); letter-spacing:-.05em; }
+    .app[data-app="netflix"] .app-icon { color:#df1020; }
+    .app[data-app="youtube"] .app-icon { color:#f00000; font-size:clamp(19px,2vw,29px); }
+    .app[data-app="prime"] .app-icon { color:#0876c9; font-size:clamp(12px,1.3vw,18px); line-height:1; }
+    .app[data-app="disney"] .app-icon { color:#17476b; background:#e5f4f7; font-size:clamp(10px,1vw,14px); }
+    .app[data-app="spotify"] .app-icon { background:#14191a; color:#20d760; font-size:clamp(20px,2vw,28px); }
+    .app-label { font-size:clamp(10px,1vw,13px); color:#f2eee9; white-space:nowrap; }
+    .focusable:focus { outline:3px solid #fff; outline-offset:4px; transform:scale(1.07); box-shadow:0 12px 30px #000b,0 0 22px #ffffff55; }
+    .poster:focus::before { transform:scale(1.08); }
+    footer { display:flex; justify-content:space-between; align-items:center; color:#c8c0b9; font-size:11px; margin-top:12px; flex:none; }
+    #toast { position:fixed; left:50%; bottom:30px; transform:translate(-50%,16px); opacity:0; background:#f4f3f1; color:#181716; padding:12px 18px; border-radius:10px; font-size:15px; font-weight:700; transition:.2s; pointer-events:none; box-shadow:0 10px 30px #0009; }
+    #toast.show { opacity:1; transform:translate(-50%,0); }
+    @media (max-height:650px) { main { padding-top:12px; padding-bottom:10px; } header { height:42px; } .hero { min-height:160px; padding-bottom:10px; } .rows { gap:11px; } .poster { height:72px; } .app-label { display:none; } }
   </style>
 </head>
 <body>
-  <div class="backdrop" aria-hidden="true"></div><div class="shade" aria-hidden="true"></div>
+  <div class="backdrop" aria-hidden="true"></div>
   <main>
     <header>
+      <div class="profile" aria-hidden="true">C</div>
       <div class="brand">CASA</div>
       <nav aria-label="Seções">
-        <button class="nav active focusable" data-category="inicio">Início</button>
-        <button class="nav focusable" data-category="filmes">Filmes</button>
-        <button class="nav focusable" data-category="series">Séries</button>
-        <button class="nav focusable" data-category="musica">Música</button>
-        <button class="nav focusable" data-category="apps">Apps</button>
+        <button class="nav active focusable" data-category="inicio" data-row="0" data-col="0">Início</button>
+        <button class="nav focusable" data-category="filmes" data-row="0" data-col="1">Filmes</button>
+        <button class="nav focusable" data-category="series" data-row="0" data-col="2">Séries</button>
+        <button class="nav focusable" data-category="musica" data-row="0" data-col="3">Música</button>
+        <button class="nav focusable" data-category="apps" data-row="0" data-col="4">Apps</button>
       </nav>
-      <div class="spacer"></div><div class="clock" id="clock">--:--</div>
+      <button class="header-icon focusable" data-action="buscar" data-row="0" data-col="5" aria-label="Buscar">⌕</button>
+      <div class="spacer"></div>
+      <div class="clock" id="clock">--:--</div><div class="platform">VIDAA TV</div>
     </header>
     <section class="hero" aria-labelledby="title">
-      <div class="eyebrow">Sua sala, sua seleção</div>
-      <h1 id="title">Tudo começa<br>por aqui.</h1>
-      <p class="summary" id="summary">Interface de teste para a sua Hisense. Use as setas do controle e pressione OK para navegar pelas categorias.</p>
-      <div class="hint"><span class="key">OK</span> <span>Escolha um atalho para abrir o serviço</span></div>
+      <div class="service-mark" id="serviceMark">CASA</div>
+      <h1 id="title">Histórias que<br>ficam com você.</h1>
+      <p class="summary" id="summary">Seus serviços favoritos e uma seleção para hoje à noite, em um só lugar.</p>
+      <div class="trending"><strong>EM ALTA</strong><span id="trendingText">Escolhas para curtir em casa</span></div>
     </section>
-    <section aria-label="Aplicativos de exemplo">
-      <p class="section-title" id="sectionTitle">Seus aplicativos</p>
-      <div class="apps">
-        <button class="app focusable" data-color="red"><span>NETFLIX</span></button>
-        <button class="app focusable" data-color="red"><span>YouTube</span></button>
-        <button class="app focusable" data-color="blue"><span>prime<br>video</span></button>
-        <button class="app focusable" data-color="gold"><span>Disney+</span></button>
-        <button class="app focusable" data-color="green"><span>Música</span></button>
-      </div>
-    </section>
-    <footer><span>CASA · protótipo de navegação</span><span>Voltar: tecla Back · Esc</span></footer>
+    <div class="rows">
+      <section aria-label="Sugestões para assistir">
+        <p class="row-title" id="sectionTitle">Sugestões para você</p>
+        <div class="posters">
+          <button class="poster focusable" data-row="1" data-col="0"><span class="poster-tag">Cinema</span><span class="poster-name">Horizonte de fogo</span></button>
+          <button class="poster focusable" data-row="1" data-col="1"><span class="poster-tag">Série</span><span class="poster-name">Depois da meia-noite</span></button>
+          <button class="poster focusable" data-row="1" data-col="2"><span class="poster-tag">Drama</span><span class="poster-name">O verão azul</span></button>
+          <button class="poster focusable" data-row="1" data-col="3"><span class="poster-tag">Documentário</span><span class="poster-name">Mundos distantes</span></button>
+          <button class="poster focusable" data-row="1" data-col="4"><span class="poster-tag">Aventura</span><span class="poster-name">Rota selvagem</span></button>
+        </div>
+      </section>
+      <section aria-label="Aplicativos">
+        <p class="row-title">Seus aplicativos</p>
+        <div class="apps">
+          <button class="app focusable" data-app="netflix" data-row="2" data-col="0"><span class="app-icon">NETFLIX</span><span class="app-label">Netflix</span></button>
+          <button class="app focusable" data-app="youtube" data-row="2" data-col="1"><span class="app-icon">▶</span><span class="app-label">YouTube</span></button>
+          <button class="app focusable" data-app="prime" data-row="2" data-col="2"><span class="app-icon">prime<br>video</span><span class="app-label">Prime Video</span></button>
+          <button class="app focusable" data-app="disney" data-row="2" data-col="3"><span class="app-icon">Disney+</span><span class="app-label">Disney+</span></button>
+          <button class="app focusable" data-app="spotify" data-row="2" data-col="4"><span class="app-icon">≋</span><span class="app-label">Spotify</span></button>
+        </div>
+      </section>
+    </div>
+    <footer><span>CASA · sua tela de entretenimento</span><span>Setas para navegar · OK para abrir</span></footer>
   </main>
   <div id="toast" role="status" aria-live="polite"></div>
   <script>
@@ -79,56 +126,22 @@
     const updateClock = () => clock.textContent = new Intl.DateTimeFormat('pt-BR',{hour:'2-digit',minute:'2-digit'}).format(new Date());
     updateClock(); setInterval(updateClock,15000);
     const navButtons = [...document.querySelectorAll('.nav')];
-    const appButtons = [...document.querySelectorAll('.app')];
     const focusables = [...document.querySelectorAll('.focusable')];
     const categories = {
-      inicio: { title:'Tudo começa<br>por aqui.', summary:'Interface de teste para a sua Hisense. Use as setas do controle e pressione OK para navegar pelas categorias.', section:'Seus aplicativos', items:['NETFLIX','YouTube','prime<br>video','Disney+','Música'] },
-      filmes: { title:'Uma noite<br>de cinema.', summary:'Uma área para reunir seus filmes e serviços de vídeo favoritos.', section:'Filmes e serviços', items:['Ação','Drama','Comédia','Aventura','Favoritos'] },
-      series: { title:'Sua próxima<br>série começa aqui.', summary:'Deixe séries, episódios e novidades ao alcance do controle.', section:'Séries', items:['Continuar','Novidades','Drama','Comédia','Favoritas'] },
-      musica: { title:'Dê o play<br>na sua música.', summary:'Atalhos visuais para música, rádio e playlists.', section:'Música e áudio', items:['Spotify','YouTube','Rádio','Playlists','Favoritas'] },
-      apps: { title:'Seus apps,<br>em um só lugar.', summary:'Uma tela inicial simples, com navegação por setas e foco visível.', section:'Aplicativos', items:['NETFLIX','YouTube','prime<br>video','Disney+','Mais apps'] }
+      inicio:{mark:'CASA',title:'Histórias que<br>ficam com você.',summary:'Seus serviços favoritos e uma seleção para hoje à noite, em um só lugar.',trending:'Escolhas para curtir em casa',section:'Sugestões para você'},
+      filmes:{mark:'CINEMA',title:'Uma noite de<br>grandes histórias.',summary:'Encontre um serviço e escolha o filme que combina com o seu momento.',trending:'Filmes para descobrir',section:'Destaques de cinema'},
+      series:{mark:'SÉRIES',title:'Só mais um<br>episódio.',summary:'Uma boa série merece uma tela confortável e controle sempre à mão.',trending:'Séries em destaque',section:'Continue explorando'},
+      musica:{mark:'MÚSICA',title:'Dê o play<br>na sua trilha.',summary:'Abra seu serviço de música e deixe o som preencher a sala.',trending:'Som para acompanhar',section:'Música e áudio'},
+      apps:{mark:'APPS',title:'Tudo que você<br>gosta, aqui.',summary:'Acesse seus aplicativos e serviços a partir de uma única tela.',trending:'Seus serviços favoritos',section:'Aplicativos disponíveis'}
     };
-    const serviceUrls = {
-      'netflix': 'https://www.netflix.com/',
-      'youtube': 'https://www.youtube.com/tv',
-      'prime video': 'https://app.primevideo.com/',
-      'disney+': 'https://www.disneyplus.com/',
-      'música': 'https://open.spotify.com/',
-      'spotify': 'https://open.spotify.com/'
-    };
-    const toast = document.getElementById('toast'); let timer;
-    function notify(text) { toast.textContent = text; toast.classList.add('show'); clearTimeout(timer); timer = setTimeout(()=>toast.classList.remove('show'),1800); }
-    function selectCategory(key) {
-      const data = categories[key]; if (!data) return;
-      document.getElementById('title').innerHTML = data.title;
-      document.getElementById('summary').textContent = data.summary;
-      document.getElementById('sectionTitle').textContent = data.section;
-      appButtons.forEach((button,i) => button.querySelector('span').innerHTML = data.items[i]);
-      navButtons.forEach(button => button.classList.toggle('active',button.dataset.category === key));
-    }
-    function activate(el) {
-      if (el?.dataset.category) selectCategory(el.dataset.category);
-      else if (el?.classList.contains('app')) {
-        const label = el.querySelector('span')?.innerText.replace(/\s+/g, ' ').trim().toLowerCase();
-        const url = serviceUrls[label];
-        if (url) window.location.assign(url);
-        else notify('Este cartão ainda não tem um serviço associado.');
-      }
-    }
-    document.addEventListener('keydown', e => {
-      const current = document.activeElement;
-      if (['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key)) {
-        e.preventDefault();
-        let i = Math.max(0,focusables.indexOf(current));
-        if (e.key === 'ArrowRight') i = (i + 1) % focusables.length;
-        if (e.key === 'ArrowLeft') i = (i - 1 + focusables.length) % focusables.length;
-        if (e.key === 'ArrowDown') i = Math.min(focusables.length - 1, i + 3);
-        if (e.key === 'ArrowUp') i = Math.max(0, i - 3);
-        focusables[i].focus();
-      } else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(current); }
-      else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'BrowserBack') { e.preventDefault(); notify('Volta para a tela inicial da TV pelo botão Voltar.'); }
-    });
-    focusables.forEach(el => el.addEventListener('click',()=>activate(el)));
+    const serviceUrls={netflix:'https://www.netflix.com/',youtube:'https://www.youtube.com/tv','prime video':'https://app.primevideo.com/','disney+':'https://www.disneyplus.com/',spotify:'https://open.spotify.com/'};
+    const toast=document.getElementById('toast'); let timer;
+    function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),2200);}
+    function selectCategory(key){const data=categories[key];if(!data)return;document.getElementById('serviceMark').textContent=data.mark;document.getElementById('title').innerHTML=data.title;document.getElementById('summary').textContent=data.summary;document.getElementById('trendingText').textContent=data.trending;document.getElementById('sectionTitle').textContent=data.section;navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));}
+    function activate(el){if(el?.dataset.category)selectCategory(el.dataset.category);else if(el?.dataset.app){const key=el.dataset.app;const url=serviceUrls[key];if(url)window.location.assign(url);}else if(el?.dataset.action==='buscar')notify('Use os aplicativos para encontrar o que assistir.');else if(el?.classList.contains('poster'))notify('Escolha um serviço na fileira de aplicativos para assistir.');}
+    function moveFocus(key){const current=document.activeElement;const row=Number(current?.dataset.row??0);const col=Number(current?.dataset.col??0);let nextRow=row,nextCol=col;const rows=[...new Set(focusables.map(el=>Number(el.dataset.row)))].sort((a,b)=>a-b);if(key==='ArrowLeft'||key==='ArrowRight'){const peers=focusables.filter(el=>Number(el.dataset.row)===row);let i=peers.indexOf(current);i=(i+(key==='ArrowRight'?1:-1)+peers.length)%peers.length;peers[i]?.focus();return;}if(key==='ArrowUp'||key==='ArrowDown'){const available=key==='ArrowUp'?rows.filter(r=>r<row).sort((a,b)=>b-a):rows.filter(r=>r>row).sort((a,b)=>a-b);if(!available.length)return;nextRow=available[0];const peers=focusables.filter(el=>Number(el.dataset.row)===nextRow);const target=peers.reduce((best,el)=>Math.abs(Number(el.dataset.col)-col)<Math.abs(Number(best.dataset.col)-col)?el:best,peers[0]);target?.focus();}}
+    document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();moveFocus(e.key);}else if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(document.activeElement);}else if(['Escape','Backspace','BrowserBack'].includes(e.key)){e.preventDefault();notify('Use Voltar novamente para sair da CASA.');}});
+    focusables.forEach(el=>el.addEventListener('click',()=>activate(el)));
     focusables[0].focus();
   </script>
 </body>
