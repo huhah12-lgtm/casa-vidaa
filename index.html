@@ -12,7 +12,12 @@
     html,body{width:100%;height:100%;margin:0;overflow:hidden}
     body{background:#101014;color:var(--white)}
     button{font:inherit;color:inherit;border:0;cursor:pointer}
-    .backdrop{position:fixed;inset:0;background-color:#171311;background-position:center 38%;background-size:cover;transition:background-image .25s ease}
+    .backdrop{position:fixed;inset:0;overflow:hidden;background:#101014}
+    .backdrop-image{position:absolute;inset:-3%;opacity:0;background:radial-gradient(ellipse at 72% 24%,#473e62 0,transparent 34%),radial-gradient(ellipse at 22% 75%,#283d49 0,transparent 38%),linear-gradient(130deg,#111318,#1c1a20 52%,#111317);background-size:cover;background-position:50% 45%;transform:scale(1.035);transition:opacity .9s ease;animation:ambientDrift 44s ease-in-out infinite alternate}
+    .backdrop-image.active{opacity:1}
+    .backdrop-image.has-image{animation:artDrift 36s ease-in-out infinite alternate}
+    @keyframes ambientDrift{from{background-position:42% 43%;transform:scale(1.035) translate3d(-.35%,0,0)}to{background-position:58% 57%;transform:scale(1.07) translate3d(.35%,-.2%,0)}}
+    @keyframes artDrift{from{transform:scale(1.035) translate3d(-.25%,0,0)}to{transform:scale(1.085) translate3d(.25%,-.35%,0)}}
     .backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,12,.96) 0%,rgba(8,8,12,.72) 35%,rgba(8,8,12,.16) 78%),linear-gradient(0deg,#101014 0%,rgba(16,16,20,.96) 8%,rgba(16,16,20,.62) 30%,transparent 67%,rgba(7,8,11,.35) 100%)}
     main{position:relative;z-index:1;width:min(100%,1920px);height:100vh;min-height:520px;margin:auto;padding:18px 6.3vw 14px;display:flex;flex-direction:column}
     header{height:48px;flex:none;display:flex;align-items:center;gap:clamp(10px,1.35vw,20px)}
@@ -71,13 +76,14 @@
     .poster:focus{transform:scale(1.045)}
     footer{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#c8c0b9;font-size:clamp(8px,.72vw,10px);margin-top:8px;flex:none}
     footer a{color:#ded6ce;text-decoration:none}
+    @media(prefers-reduced-motion:reduce){.backdrop-image{animation:none;transition:opacity .2s ease}}
     #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);opacity:0;background:#f4f3f1;color:#181716;padding:11px 16px;border-radius:10px;font-size:14px;font-weight:700;transition:.2s;pointer-events:none;box-shadow:0 10px 30px #0009}
     #toast.show{opacity:1;transform:translate(-50%,0)}
     @media(max-height:620px){main{padding-top:11px;padding-bottom:8px}header{height:41px}.hero{min-height:145px;padding-bottom:11px}.rows{gap:10px}.poster{height:70px}.app-label{display:none}footer{margin-top:5px}}
   </style>
 </head>
 <body>
-  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  <div class="backdrop" aria-hidden="true"><div class="backdrop-image active" id="backdropA"></div><div class="backdrop-image" id="backdropB"></div></div>
   <main>
     <header>
       <div class="profile" aria-hidden="true">C</div>
@@ -167,6 +173,7 @@
     };
     const navButtons=[...document.querySelectorAll('.nav')];
     const posters=document.getElementById('posters');
+    const backdropLayers=[document.getElementById('backdropA'),document.getElementById('backdropB')];let activeBackdrop=0;
     const toast=document.getElementById('toast');let toastTimer;
     function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
     function stremioSearch(title,year){return STREMIO_SEARCH+encodeURIComponent(`${title} ${year||''}`.trim())}
@@ -190,8 +197,9 @@
       window.location.assign(target.href);
     }
     function renderPosters(items){posters.replaceChildren();items.forEach((item,index)=>{const b=document.createElement('button');b.className='poster focusable';b.dataset.row='1';b.dataset.col=String(index);b.dataset.item=item.name;b.setAttribute('aria-label',`${item.name}, ${item.provider}. ${item.provider==='YouTube Music'?'Abrir YouTube e acessar Música':'Abrir detalhes no Stremio'}`);if(item.image)b.style.backgroundImage=`url("${item.image}"),linear-gradient(135deg,#382525,#171820)`;else b.classList.add('music-card');b.innerHTML=`<span class="poster-tag">${item.kind}</span><span class="poster-name">${item.name}</span><span class="poster-provider">${item.provider}</span>`;b.addEventListener('focus',()=>showItem(item));b.addEventListener('mouseenter',()=>showItem(item));b.addEventListener('click',()=>openItem(item));posters.appendChild(b)})}
-    function showItem(item){document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=item.trend||'Seleção CASA';const backdrop=document.getElementById('backdrop');backdrop.style.backgroundImage=item.image?`linear-gradient(90deg,rgba(8,8,12,.18),rgba(8,8,12,.05)),url("${item.image.replace('/s640/','/s1440/')}")`:'radial-gradient(ellipse at 70% 18%,#544278 0,transparent 36%),linear-gradient(120deg,#261d31,#111016 68%)'}
-    function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero);document.getElementById('sectionTitle').textContent=data.section;document.getElementById('rowMeta').textContent=key==='musica'?'YouTube na TV · controle remoto':'Filmes e séries · Stremio';document.getElementById('appsHint').textContent=key==='musica'?'YouTube: esquerda → Música · use o controle':'Setas para navegar · OK para abrir';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderPosters(data.list);}
+    function setBackdrop(item){const nextIndex=1-activeBackdrop;const next=backdropLayers[nextIndex];next.style.backgroundImage=item?.image?`linear-gradient(90deg,rgba(8,8,12,.18),rgba(8,8,12,.05)),url("${item.image.replace('/s640/','/s1440/')}")`:'';next.classList.toggle('has-image',Boolean(item?.image));requestAnimationFrame(()=>{next.classList.add('active');backdropLayers[activeBackdrop].classList.remove('active');activeBackdrop=nextIndex})}
+    function showItem(item,updateBackdrop=true){document.getElementById('serviceMark').textContent=`${item.provider.toUpperCase()} · ${item.kind.split(' · ')[0]}`;document.getElementById('title').textContent=item.name;document.getElementById('summary').textContent=item.summary;document.getElementById('trendingText').textContent=item.trend||'Seleção CASA';if(updateBackdrop)setBackdrop(item)}
+    function selectCategory(key){const data=categories[key];if(!data)return;showItem(data.hero,false);setBackdrop(null);document.getElementById('sectionTitle').textContent=data.section;document.getElementById('rowMeta').textContent=key==='musica'?'YouTube na TV · controle remoto':'Filmes e séries · Stremio';document.getElementById('appsHint').textContent=key==='musica'?'YouTube: esquerda → Música · use o controle':'Setas para navegar · OK para abrir';navButtons.forEach(button=>button.classList.toggle('active',button.dataset.category===key));renderPosters(data.list);}
     // This VIDAA build registers /detail/:type/:metaId/:videoId? (not
     // /metadetails), so keep the deep link on the route its TV frontend uses.
     function stremioDetail(item){return `${STREMIO_BASE}#/detail/${item.type}/${encodeURIComponent(item.id)}${item.type==='movie'?`/${encodeURIComponent(item.id)}`:''}`}
@@ -202,6 +210,8 @@
     function moveFocus(key){const current=document.activeElement;const row=Number(current?.dataset.row??0);const col=Number(current?.dataset.col??0);const all=[...document.querySelectorAll('.focusable')];const rows=[...new Set(all.map(el=>Number(el.dataset.row)))].sort((a,b)=>a-b);if(key==='ArrowLeft'||key==='ArrowRight'){const peers=all.filter(el=>Number(el.dataset.row)===row);let i=peers.indexOf(current);i=(i+(key==='ArrowRight'?1:-1)+peers.length)%peers.length;peers[i]?.focus();return;}if(key==='ArrowUp'||key==='ArrowDown'){const available=key==='ArrowUp'?rows.filter(r=>r<row).sort((a,b)=>b-a):rows.filter(r=>r>row).sort((a,b)=>a-b);if(!available.length)return;const peers=all.filter(el=>Number(el.dataset.row)===available[0]);peers.reduce((best,el)=>Math.abs(Number(el.dataset.col)-col)<Math.abs(Number(best.dataset.col)-col)?el:best,peers[0])?.focus()}}
     function leaveCasa(){if(window.history.length>1){window.history.back();return;}try{window.close()}catch{}setTimeout(()=>notify('Para sair da CASA, use Voltar ou Home no controle.'),120)}
     document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();moveFocus(e.key)}else if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(document.activeElement)}else if(['Escape','Backspace','BrowserBack','GoBack','Back'].includes(e.key)||e.keyCode===461||e.which===461){e.preventDefault();leaveCasa()}});
+    document.addEventListener('focusin',e=>{if(!e.target.closest('.poster'))setBackdrop(null)});
+    posters.addEventListener('mouseleave',()=>{if(!posters.contains(document.activeElement))setBackdrop(null)});
     document.querySelectorAll('.focusable[data-category],.focusable[data-app],.focusable[data-action]').forEach(el=>el.addEventListener('click',()=>activate(el)));
     const updateClock=()=>document.getElementById('clock').textContent=new Intl.DateTimeFormat('pt-BR',{hour:'2-digit',minute:'2-digit'}).format(new Date());updateClock();setInterval(updateClock,15000);
     selectCategory('inicio');document.querySelector('.nav[data-category="inicio"]').focus();
