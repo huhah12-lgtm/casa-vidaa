@@ -8,10 +8,10 @@ O projeto pode ser publicado pelo GitHub Pages a partir da raiz do repositório.
 
 ## Estado atual
 
-- Navegação visual entre Início, Filmes, Séries, Música e Apps.
+- Navegação visual entre Início, Filmes, Séries, Canais e Apps, com busca integrada para títulos e aplicativos.
 - Destaque de foco para controle direcional.
 - Banner cinematográfico, fileiras de sugestões, capas de catálogo e aplicativos.
-- Atalhos para abrir as versões web de Netflix, YouTube, Prime Video, Disney+ e Spotify.
+- Atalhos para YouTube, Spotify, Stremio, serviços de canais ao vivo e teste de velocidade Cloudflare, além de um painel com informações expostas pelo navegador da TV.
 - Os atalhos web não iniciam os aplicativos nativos e alguns serviços podem não funcionar no navegador da TV.
 - O catálogo de filmes consulta o Wikidata; as séries usam TVmaze e as capas de fallback vêm da Wikipédia.
 - Os serviços acima são consultados diretamente pelo navegador e podem não ter imagem para todos os títulos.
