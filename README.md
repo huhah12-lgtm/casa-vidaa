@@ -10,8 +10,10 @@ O projeto pode ser publicado pelo GitHub Pages a partir da raiz do repositório.
 
 - Navegação visual entre Início, Filmes, Séries, Música e Apps.
 - Destaque de foco para controle direcional.
-- Banner cinematográfico e fileiras de sugestões e aplicativos, usando arte CSS própria.
+- Banner cinematográfico, fileiras de sugestões, capas de catálogo e aplicativos.
 - Atalhos para abrir as versões web de Netflix, YouTube, Prime Video, Disney+ e Spotify.
 - Os atalhos web não iniciam os aplicativos nativos e alguns serviços podem não funcionar no navegador da TV.
-- Sem bibliotecas externas, fontes remotas, analytics ou chamadas de API.
+- O catálogo de filmes consulta o Wikidata; as séries usam TVmaze e as capas de fallback vêm da Wikipédia.
+- Os serviços acima são consultados diretamente pelo navegador e podem não ter imagem para todos os títulos.
+- Os cards continuam abrindo os títulos no Stremio; ele não fornece a listagem nem as capas do catálogo.
 
